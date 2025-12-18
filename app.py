@@ -247,10 +247,82 @@ def reset():
 def public_asset(filename):
     assets_dir = os.path.join(BASE_DIR, 'static', 'public', 'assets')
     try:
+        # Log basic context
+        app.logger.info('public_asset request: %s ; assets_dir=%s', filename, assets_dir)
+        if not os.path.isdir(assets_dir):
+            app.logger.error('Assets dir missing: %s', assets_dir)
+            return ('', 404)
+        file_path = os.path.join(assets_dir, filename)
+        exists = os.path.exists(file_path)
+        app.logger.info('Requested file path: %s ; exists=%s', file_path, exists)
+        if not exists:
+            try:
+                listing = os.listdir(assets_dir)
+                app.logger.error('Assets dir listing: %s', listing)
+            except Exception:
+                app.logger.exception('Failed to list assets dir')
+            return ('', 404)
         return send_from_directory(assets_dir, filename)
     except Exception:
         app.logger.exception('Failed to serve public asset: %s', filename)
         return ('', 404)
+
+
+@app.route('/_debug/fs', methods=['GET'])
+def debug_fs():
+    """Diagnostic endpoint: reports presence and read status of key files and folders."""
+    try:
+        assets_dir = os.path.join(BASE_DIR, 'static', 'public', 'assets')
+        checks = {
+            'cwd': os.getcwd(),
+            'base_dir': BASE_DIR,
+            'assets_dir_exists': os.path.isdir(assets_dir),
+            'assets_listing': None,
+            'cards_json_exists': os.path.exists(CARDS_FILE),
+            'cards_read_error': None,
+            'user_json_exists': os.path.exists(USER_FILE),
+            'user_read_error': None,
+        }
+        try:
+            if os.path.isdir(assets_dir):
+                checks['assets_listing'] = os.listdir(assets_dir)
+        except Exception as e:
+            checks['assets_listing'] = f'error: {e}'
+        try:
+            if checks['cards_json_exists']:
+                with open(CARDS_FILE, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        checks['cards_sample'] = data[:3]
+                    else:
+                        checks['cards_sample'] = 'not a list'
+        except Exception as e:
+            checks['cards_read_error'] = str(e)
+        try:
+            if checks['user_json_exists']:
+                with open(USER_FILE, 'r', encoding='utf-8') as f:
+                    checks['user'] = json.load(f)
+        except Exception as e:
+            checks['user_read_error'] = str(e)
+
+        return jsonify({'ok': True, 'checks': checks})
+    except Exception:
+        app.logger.exception('Debug FS failed')
+        return jsonify({'ok': False, 'error': 'debug failed'}), 500
+
+
+@app.route('/_debug/fs-write', methods=['POST'])
+def debug_fs_write():
+    """Diagnostic endpoint: tests whether the process can write to disk."""
+    testfile = os.path.join(BASE_DIR, 'tmp_test_write.txt')
+    try:
+        with open(testfile, 'w', encoding='utf-8') as f:
+            f.write('ok')
+        os.remove(testfile)
+        return jsonify({'ok': True, 'write_ok': True})
+    except Exception as e:
+        app.logger.exception('FS write test failed')
+        return jsonify({'ok': False, 'write_error': str(e)}), 500
 
 
 if __name__ == '__main__':
