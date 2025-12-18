@@ -86,8 +86,12 @@ def load_user():
 
 
 def save_user(user):
-    with open(USER_FILE, 'w', encoding='utf-8') as f:
-        json.dump(user, f, indent=2)
+    try:
+        with open(USER_FILE, 'w', encoding='utf-8') as f:
+            json.dump(user, f, indent=2)
+    except Exception as e:
+        app.logger.exception("Failed to save user data")
+        raise
 
 
 def choose_rarity(pulls=1):
@@ -159,7 +163,10 @@ def pull():
 
     # update user data (coins for pulling; tickets already adjusted for duplicates)
     user['coins'] -= total_cost
-    save_user(user)
+    try:
+        save_user(user)
+    except Exception as e:
+        return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
     return jsonify({'ok': True, 'results': results, 'coins': user['coins'], 'tickets': user.get('tickets', 0)})
 
 
@@ -208,14 +215,21 @@ def buy():
     card = random.choice(pool)
     user['tickets'] -= cost
     user.setdefault('owned', []).append(card['id'])
-    save_user(user)
+    try:
+        save_user(user)
+    except Exception as e:
+        return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
     return jsonify({'ok': True, 'card': card, 'tickets': user.get('tickets', 0)})
 
 
 @app.route('/reset', methods=['POST'])
 def reset():
     user = {'coins': 100000, 'owned': [], 'tickets': 0}
-    save_user(user)
+    try:
+        save_user(user)
+    except Exception as e:
+        app.logger.exception("Failed to reset user data")
+        return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
     return jsonify({'ok': True})
 
 

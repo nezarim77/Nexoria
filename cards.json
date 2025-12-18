@@ -4,28 +4,28 @@
     "name": "Lelouch Lamperouge",
     "rarity": "UR",
     "desc": "Code Geass",
-    "image": "static/public/cards/ur/ur-lelouch.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/8/406163.jpg"
   },
   {
     "id": 2,
     "name": "Monkey D. Luffy",
     "rarity": "UR",
     "desc": "One Piece",
-    "image": "static/public/cards/ur/ur-luffy.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/9/310307.jpg"
   },
   {
     "id": 3,
     "name": "Levi Ackerman",
     "rarity": "UR",
     "desc": "Attack on Titan",
-    "image": "static/public/cards/ur/ur-levi.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/2/241413.jpg"
   },
   {
     "id": 4,
     "name": "L Lawliet",
     "rarity": "UR",
     "desc": "Death Note",
-    "image": "static/public/cards/ur/ur-l.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/11/31502.jpg"
   },
   {
     "id": 5,

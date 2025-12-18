@@ -83,9 +83,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
         { label:'Batal', class:'btn-secondary' },
         { label:'Reset', class:'btn-danger', onClick: async ()=>{
             const res = await fetch('/reset',{method:'POST'})
-            const j = await res.json()
-            console.log('shop: buy response', j)
-            if(j.ok) location.reload()
+            let j = {ok:false, error:'No response'}
+            const ct = res.headers.get('content-type') || ''
+            if(ct.includes('application/json')){
+              j = await res.json().catch(()=>({ok:false,error:'Invalid JSON'}))
+            } else {
+              const text = await res.text().catch(()=>null)
+              j = {ok:false, error: text || 'Invalid response from server'}
+            }
+            console.log('reset response', res.status, j)
+            if(res.ok && j.ok) location.reload()
+            else showModal({title:'Reset gagal', text: j.error || 'Terjadi kesalahan saat mereset.', actions:[{label:'OK'}]})
           }
         }
       ]
