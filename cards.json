@@ -4,698 +4,698 @@
     "name": "Lelouch Lamperouge",
     "rarity": "UR",
     "desc": "Code Geass",
-    "image": "public/cards/ur/ur-lelouch.jpg"
+    "image": "static/public/cards/ur/ur-lelouch.jpg"
   },
   {
     "id": 2,
     "name": "Monkey D. Luffy",
     "rarity": "UR",
     "desc": "One Piece",
-    "image": "public/cards/ur/ur-luffy.jpg"
+    "image": "static/public/cards/ur/ur-luffy.jpg"
   },
   {
     "id": 3,
     "name": "Levi Ackerman",
     "rarity": "UR",
     "desc": "Attack on Titan",
-    "image": "public/cards/ur/ur-levi.jpg"
+    "image": "static/public/cards/ur/ur-levi.jpg"
   },
   {
     "id": 4,
     "name": "L Lawliet",
     "rarity": "UR",
     "desc": "Death Note",
-    "image": "public/cards/ur/ur-l.jpg"
+    "image": "static/public/cards/ur/ur-l.jpg"
   },
   {
     "id": 5,
     "name": "Roronoa Zoro",
     "rarity": "UR",
     "desc": "One Piece",
-    "image": "public/cards/ur/ur-zoro.jpg"
+    "image": "static/public/cards/ur/ur-zoro.jpg"
   },
   {
     "id": 6,
     "name": "Zoldyck Killua",
     "rarity": "UR",
     "desc": "Hunter x Hunter",
-    "image": "public/cards/ur/ur-killua.jpg"
+    "image": "static/public/cards/ur/ur-killua.jpg"
   },
   {
     "id": 7,
     "name": "Light Yagami",
     "rarity": "UR",
     "desc": "Death Note",
-    "image": "public/cards/ur/ur-light.jpg"
+    "image": "static/public/cards/ur/ur-light.jpg"
   },
   {
     "id": 8,
     "name": "Okabe Rintarou",
     "rarity": "UR",
     "desc": "Steins;Gate",
-    "image": "public/cards/ur/ur-okabe.jpg"
+    "image": "static/public/cards/ur/ur-okabe.jpg"
   },
   {
     "id": 9,
     "name": "Edward Elric",
     "rarity": "UR",
     "desc": "Fullmetal Alchemist",
-    "image": "public/cards/ur/ur-edward.jpg"
+    "image": "static/public/cards/ur/ur-edward.jpg"
   },
   {
     "id": 10,
     "name": "Uzumaki Naruto",
     "rarity": "UR",
     "desc": "Naruto",
-    "image": "public/cards/ur/ur-naruto.jpg"
+    "image": "static/public/cards/ur/ur-naruto.jpg"
   },{
   "id": 11,
   "name": "Guts",
   "rarity": "SSS",
   "desc": "Berserk",
-  "image": "public/cards/sss/sss-guts.jpg"
+  "image": "static/public/cards/sss/sss-guts.jpg"
 },
 {
   "id": 12,
   "name": "Sakata Gintoki",
   "rarity": "SSS",
   "desc": "Gintama",
-  "image": "public/cards/sss/sss-gintoki.jpg"
+  "image": "static/public/cards/sss/sss-gintoki.jpg"
 },
 {
   "id": 13,
   "name": "Eren Yeager",
   "rarity": "SSS",
   "desc": "Attack on Titan",
-  "image": "public/cards/sss/sss-eren.jpg"
+  "image": "static/public/cards/sss/sss-eren.jpg"
 },
 {
   "id": 14,
   "name": "Makise Kurisu",
   "rarity": "SSS",
   "desc": "Steins;Gate",
-  "image": "public/cards/sss/sss-kurisu.jpg"
+  "image": "static/public/cards/sss/sss-kurisu.jpg"
 },
 {
   "id": 15,
   "name": "Uchiha Itachi",
   "rarity": "SSS",
   "desc": "Naruto",
-  "image": "public/cards/sss/sss-itachi.jpg"
+  "image": "static/public/cards/sss/sss-itachi.jpg"
 },
 {
   "id": 16,
   "name": "Gojou Satoru",
   "rarity": "SSS",
   "desc": "Jujutsu Kaisen",
-  "image": "public/cards/sss/sss-gojou.jpg"
+  "image": "static/public/cards/sss/sss-gojou.jpg"
 },
 {
   "id": 17,
   "name": "Mikasa Ackerman",
   "rarity": "SSS",
   "desc": "Attack on Titan",
-  "image": "public/cards/sss/sss-mikasa.jpg"
+  "image": "static/public/cards/sss/sss-mikasa.jpg"
 },
 {
   "id": 18,
   "name": "Kaneki Ken",
   "rarity": "SSS",
   "desc": "Tokyo Ghoul",
-  "image": "public/cards/sss/sss-kaneki.jpg"
+  "image": "static/public/cards/sss/sss-kaneki.jpg"
 },
 {
   "id": 19,
   "name": "Hikigaya Hachiman",
   "rarity": "SSS",
   "desc": "Oregairu",
-  "image": "public/cards/sss/sss-hachiman.jpg"
+  "image": "static/public/cards/sss/sss-hachiman.jpg"
 },
 {
   "id": 20,
   "name": "Hatake Kakashi",
   "rarity": "SSS",
   "desc": "Naruto",
-  "image": "public/cards/sss/sss-kakashi.jpg"
+  "image": "static/public/cards/sss/sss-kakashi.jpg"
 },
 {
   "id": 21,
   "name": "Spike Spiegel",
   "rarity": "SSS",
   "desc": "Cowboy Bebop",
-  "image": "public/cards/sss/sss-spike.jpg"
+  "image": "static/public/cards/sss/sss-spike.jpg"
 },
 {
   "id": 22,
   "name": "Saitama",
   "rarity": "SSS",
   "desc": "One Punch Man",
-  "image": "public/cards/sss/sss-saitama.jpg"
+  "image": "static/public/cards/sss/sss-saitama.jpg"
 },
 {
   "id": 23,
   "name": "Rem",
   "rarity": "SSS",
   "desc": "Re:Zero",
-  "image": "public/cards/sss/sss-rem.jpg"
+  "image": "static/public/cards/sss/sss-rem.jpg"
 },
 {
   "id": 24,
   "name": "Joseph Joestar",
   "rarity": "SSS",
   "desc": "Jojo's Bizarre Adventure",
-  "image": "public/cards/sss/sss-joseph.jpg"
+  "image": "static/public/cards/sss/sss-joseph.jpg"
 },
 {
   "id": 24,
   "name": "Sakurajima Mai",
   "rarity": "SSS",
   "desc": "Seishun Buta Yarou",
-  "image": "public/cards/sss/sss-mai.jpg"
+  "image": "static/public/cards/sss/sss-mai.jpg"
 },
 {
   "id": 25,
   "name": "Megumin",
   "rarity": "SSS",
   "desc": "KonoSuba",
-  "image": "public/cards/sss/sss-megumin.jpg"
+  "image": "static/public/cards/sss/sss-megumin.jpg"
 },
 {
   "id": 26,
   "name": "Arataka Reigen",
   "rarity": "SSS",
   "desc": "Mob Psycho 100",
-  "image": "public/cards/sss/sss-reigen.jpg"
+  "image": "static/public/cards/sss/sss-reigen.jpg"
 },
 {
   "id": 27,
   "name": "Senjougahara Hitagi",
   "rarity": "SSS",
   "desc": "Monogatari Series",
-  "image": "public/cards/sss/sss-senjougahara.jpg"
+  "image": "static/public/cards/sss/sss-senjougahara.jpg"
 },
 {
   "id": 29,
   "name": "Kirigaya Kazuto",
   "rarity": "SSS",
   "desc": "Sword Art Online",
-  "image": "public/cards/sss/sss-kirito.jpg"
+  "image": "static/public/cards/sss/sss-kirito.jpg"
 },
 {
   "id": 30,
   "name": "Yato",
   "rarity": "SSS",
   "desc": "Noragami",
-  "image": "public/cards/sss/sss-yato.jpg"
+  "image": "static/public/cards/sss/sss-yato.jpg"
 },
 {
   "id": 31,
   "name": "Roy Mustang",
   "rarity": "SS",
   "desc": "Fullmetal Alchemist",
-  "image": "public/cards/SS/ss-Roy.jpg"
+  "image": "static/public/cards/SS/ss-Roy.jpg"
 },
 {
   "id": 32,
   "name": "Violet Evergarden",
   "rarity": "SS",
   "desc": "Violet Evergarden",
-  "image": "public/cards/SS/ss-violet.jpg"
+  "image": "static/public/cards/SS/ss-violet.jpg"
 },
 {
   "id": 33,
   "name": "Zero Two",
   "rarity": "SS",
   "desc": "Darling in the Franxx",
-  "image": "public/cards/ss/ss-002.jpg"
+  "image": "static/public/cards/ss/ss-002.jpg"
 },
 {
   "id": 34,
   "name": "Ayanokouji Kiyotaka",
   "rarity": "SS",
   "desc": "Classroom of the Elite",
-  "image": "public/cards/ss/ss-ayanokouji.jpg"
+  "image": "static/public/cards/ss/ss-ayanokouji.jpg"
 },
 {
   "id": 35,
   "name": "Dazai Osamu",
   "rarity": "SS",
   "desc": "Bungou Stray Dogs",
-  "image": "public/cards/ss/ss-dazai.jpg"
+  "image": "static/public/cards/ss/ss-dazai.jpg"
 },
 {
   "id": 36,
   "name": "Kurosaki Ichigo",
   "rarity": "SS",
   "desc": "Bleach",
-  "image": "public/cards/ss/ss-ichigo.jpg"
+  "image": "static/public/cards/ss/ss-ichigo.jpg"
 },
 {
   "id": 37,
   "name": "Hisoka Morow",
   "rarity": "SS",
   "desc": "Hunter x Hunter",
-  "image": "public/cards/ss/ss-hisoka.jpg"
+  "image": "static/public/cards/ss/ss-hisoka.jpg"
 },
 {
   "id": 38,
   "name": "Kamina",
   "rarity": "SS",
   "desc": "Tegen Toppa Gurren Lagann",
-  "image": "public/cards/ss/ss-kamina.jpg"
+  "image": "static/public/cards/ss/ss-kamina.jpg"
 },
 {
   "id": 39,
   "name": "Thorfinn",
   "rarity": "SS",
   "desc": "Vinland Saga",
-  "image": "public/cards/SS/ss-thorfinn.jpg"
+  "image": "static/public/cards/SS/ss-thorfinn.jpg"
 },
 {
   "id": 40,
   "name": "Onizuka Eikichi",
   "rarity": "SS",
   "desc": "Great Teacher Onizuka",
-  "image": "public/cards/SS/ss-Onizuka Eikichi.jpg"
+  "image": "static/public/cards/SS/ss-Onizuka Eikichi.jpg"
 },
 {
   "id": 41,
   "name": "Oshino Shinobu",
   "rarity": "SS",
   "desc": "Monogatari Series",
-  "image": "public/cards/SS/ss-shinobu oshino.jpg"
+  "image": "static/public/cards/SS/ss-shinobu oshino.jpg"
 },
 {
   "id": 42,
   "name": "Saber",
   "rarity": "SS",
   "desc": "Fate: Stay Night",
-  "image": "public/cards/SS/SS-Saber.jpg"
+  "image": "static/public/cards/SS/SS-Saber.jpg"
 },
 {
   "id": 43,
   "name": "Sanji",
   "rarity": "SS",
   "desc": "One Piece",
-  "image": "public/cards/SS/ss-Sanji.jpg"
+  "image": "static/public/cards/SS/ss-Sanji.jpg"
 },
 {
   "id": 44,
   "name": "Aisaka Taiga",
   "rarity": "SS",
   "desc": "Toradora!",
-  "image": "public/cards/SS/ss-taiga.jpg"
+  "image": "static/public/cards/SS/ss-taiga.jpg"
 },
 {
   "id": 45,
   "name": "Araragi Koyomi",
   "rarity": "SS",
   "desc": "Monogatari Series",
-  "image": "public/cards/ss/ss-araragi.jpg"
+  "image": "static/public/cards/ss/ss-araragi.jpg"
 },
 {
   "id": 46,
   "name": "Son Goku",
   "rarity": "SS",
   "desc": "Dragon Ball",
-  "image": "public/cards/ss/ss-gokuu.jpg"
+  "image": "static/public/cards/ss/ss-gokuu.jpg"
 },
 {
   "id": 47,
   "name": "Asuka Langley Soryu",
   "rarity": "SS",
   "desc": "Evangelion",
-  "image": "public/cards/ss/ss-asuka.jpg"
+  "image": "static/public/cards/ss/ss-asuka.jpg"
 },
 {
   "id": 48,
   "name": "Uchiha Sasuke",
   "rarity": "SS",
   "desc": "Naruto",
-  "image": "public/cards/SS/ss-sasuke.jpg"
+  "image": "static/public/cards/SS/ss-sasuke.jpg"
 },
 {
   "id": 49,
   "name": "Yuuki Asuna",
   "rarity": "SS",
   "desc": "Sword Art Online",
-  "image": "public/cards/SS/ss-asuna.jpg"
+  "image": "static/public/cards/SS/ss-asuna.jpg"
 },
 {
   "id": 50,
   "name": "Askeladd",
   "rarity": "SS",
   "desc": "Vinland Saga",
-  "image": "public/cards/ss/ss-askeladd.jpg"
+  "image": "static/public/cards/ss/ss-askeladd.jpg"
 },
 {
   "id": 51,
   "name": "Yuno Gasai",
   "rarity": "SS",
   "desc": "Mirai Nikki",
-  "image": "public/cards/SS/ss-yuno gasai.jpg"
+  "image": "static/public/cards/SS/ss-yuno gasai.jpg"
 },
 {
   "id": 52,
   "name": "Alucard",
   "rarity": "SS",
   "desc": "Hellsing",
-  "image": "public/cards/ss/ss-alucard.jpg"
+  "image": "static/public/cards/ss/ss-alucard.jpg"
 },
 {
   "id": 53,
   "name": "Holo",
   "rarity": "SS",
   "desc": "Spice and Wolf",
-  "image": "public/cards/ss/ss-holo.jpg"
+  "image": "static/public/cards/ss/ss-holo.jpg"
 },
 {
   "id": 54,
   "name": "Erwin Smith",
   "rarity": "SS",
   "desc": "Attack on Titan",
-  "image": "public/cards/ss/ss-erwin.jpg"
+  "image": "static/public/cards/ss/ss-erwin.jpg"
 },
 {
   "id": 55,
   "name": "Frieren",
   "rarity": "SS",
   "desc": "Frieren: Beyond Journey's End",
-  "image": "public/cards/ss/ss-frieren.jpg"
+  "image": "static/public/cards/ss/ss-frieren.jpg"
 },
 {
   "id": 56,
   "name": "C.C.",
   "rarity": "SS",
   "desc": "Code Geass",
-  "image": "public/cards/ss/ss-cc.jpg"
+  "image": "static/public/cards/ss/ss-cc.jpg"
 },
 {
   "id": 57,
   "name": "Johan Liebert",
   "rarity": "SS",
   "desc": "Monster",
-  "image": "public/cards/ss/ss-johan.jpg"
+  "image": "static/public/cards/ss/ss-johan.jpg"
 },
 {
   "id": 58,
   "name": "Kageyama Shigeo",
   "rarity": "SS",
   "desc": "Mob Psycho 100",
-  "image": "public/cards/ss/ss-mob.jpg"
+  "image": "static/public/cards/ss/ss-mob.jpg"
 },
 {
   "id": 59,
   "name": "Kuujou Jotaro",
   "rarity": "SS",
   "desc": "Jojo's Bizarre Adventure",
-  "image": "public/cards/ss/ss-jotaro.jpg"
+  "image": "static/public/cards/ss/ss-jotaro.jpg"
 },
 {
   "id": 60,
   "name": "Akemi Homura",
   "rarity": "SS",
   "desc": "Mahou Shoujo Madoka Magica",
-  "image": "public/cards/ss/ss-homura.jpg"
+  "image": "static/public/cards/ss/ss-homura.jpg"
 },{
   "id": 61,
   "name": "Shinomiya Kaguya",
   "rarity": "S",
   "desc": "Kaguya-sama: Love is War",
-  "image": "public/cards/s/s-kaguya.jpg"
+  "image": "static/public/cards/s/s-kaguya.jpg"
 },
 {
   "id": 62,
   "name": "Midoriya Izuku",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "public/cards/s/s-deku.jpg"
+  "image": "static/public/cards/s/s-deku.jpg"
 },
 {
   "id": 63,
   "name": "Kurapika",
   "rarity": "S",
   "desc": "Hunter x Hunter",
-  "image": "public/cards/s/s-kurapika.jpg"
+  "image": "static/public/cards/s/s-kurapika.jpg"
 },
 {
   "id": 64,
   "name": "Todoroki Shouto",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "public/cards/s/s-shoto.jpg"
+  "image": "static/public/cards/s/s-shoto.jpg"
 },
 {
   "id": 65,
   "name": "Miyazono Kaori",
   "rarity": "S",
   "desc": "Your Lie in April",
-  "image": "public/cards/s/s-kaori.jpg"
+  "image": "static/public/cards/s/s-kaori.jpg"
 },
 {
   "id": 66,
   "name": "Kitagawa Marin",
   "rarity": "S",
   "desc": "My Dress-Up Darling",
-  "image": "public/cards/s/s-marin.jpg"
+  "image": "static/public/cards/s/s-marin.jpg"
 },
 {
   "id": 67,
   "name": "Tohsaka Rin",
   "rarity": "S",
   "desc": "Fate: Stay Night",
-  "image": "public/cards/s/s-rin.jpg"
+  "image": "static/public/cards/s/s-rin.jpg"
 },
 {
   "id": 68,
   "name": "Kamado Tanjirou",
   "rarity": "S",
   "desc": "Demon Slayer",
-  "image": "public/cards/s/s-tanjiro.jpg"
+  "image": "static/public/cards/s/s-tanjiro.jpg"
 },
 {
   "id": 69,
   "name": "Saiki Kusuo",
   "rarity": "S",
   "desc": "Saiki Kusuo no Psi-nan",
-  "image": "public/cards/s/s-saiki.jpg"
+  "image": "static/public/cards/s/s-saiki.jpg"
 },
 {
   "id": 70,
   "name": "Natsuki Subaru",
   "rarity": "S",
   "desc": "Re:Zero",
-  "image": "public/cards/s/s-subaru.jpg"
+  "image": "static/public/cards/s/s-subaru.jpg"
 },
 {
   "id": 71,
   "name": "Rimuru Tempest",
   "rarity": "S",
   "desc": "Tensei Shitara Slime Datta Ken",
-  "image": "public/cards/s/s-rimuru.jpg"
+  "image": "static/public/cards/s/s-rimuru.jpg"
 },
 {
   "id": 72,
   "name": "Ishigami Senkuu",
   "rarity": "S",
   "desc": "Dr. Stone",
-  "image": "public/cards/s/s-senkuu.jpg"
+  "image": "static/public/cards/s/s-senkuu.jpg"
 },
 {
   "id": 73,
   "name": "Bakugo Katsuki",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "public/cards/s/s-bakugo.jpg"
+  "image": "static/public/cards/s/s-bakugo.jpg"
 },
 {
   "id": 74,
   "name": "Emilia",
   "rarity": "S",
   "desc": "Re:Zero",
-  "image": "public/cards/s/s-emilia.jpg"
+  "image": "static/public/cards/s/s-emilia.jpg"
 },
 {
   "id": 75,
   "name": "Yukinoshita Yukino",
   "rarity": "S",
   "desc": "Oregairu",
-  "image": "public/cards/s/s-yukinon.jpg"
+  "image": "static/public/cards/s/s-yukinon.jpg"
 },
 {
   "id": 76,
   "name": "Nico Robin",
   "rarity": "S",
   "desc": "One Piece",
-  "image": "public/cards/s/s-robin.jpg"
+  "image": "static/public/cards/s/s-robin.jpg"
 },
 {
   "id": 77,
   "name": "Oreki Houtarou",
   "rarity": "S",
   "desc": "Hyouka",
-  "image": "public/cards/s/s-oreki.jpg"
+  "image": "static/public/cards/s/s-oreki.jpg"
 },
 {
   "id": 78,
   "name": "Izaya Orihara",
   "rarity": "S",
   "desc": "Durarara!!",
-  "image": "public/cards/s/s-izaya.jpg"
+  "image": "static/public/cards/s/s-izaya.jpg"
 },
 {
   "id": 79,
   "name": "Tokisaki Kurumi",
   "rarity": "S",
   "desc": "Date A Live",
-  "image": "public/cards/s/s-kurumi.jpg"
+  "image": "static/public/cards/s/s-kurumi.jpg"
 },
 {
   "id": 80,
   "name": "Revy",
   "rarity": "S",
   "desc": "Black Lagoon",
-  "image": "public/cards/s/s-revy.jpg"
+  "image": "static/public/cards/s/s-revy.jpg"
 },
 {
   "id": 81,
   "name": "Power",
   "rarity": "S",
   "desc": "Chainsaw Man",
-  "image": "public/cards/s/s-power.jpg"
+  "image": "static/public/cards/s/s-power.jpg"
 },
 {
   "id": 82,
   "name": "Sebastian Michaelis",
   "rarity": "S",
   "desc": "Black Butler",
-  "image": "public/cards/s/s-sebastian.jpg"
+  "image": "static/public/cards/s/s-sebastian.jpg"
 },
 {
   "id": 83,
   "name": "Gon Freecss",
   "rarity": "S",
   "desc": "Hunter x Hunter",
-  "image": "public/cards/s/s-gon.jpg"
+  "image": "static/public/cards/s/s-gon.jpg"
 },
 {
   "id": 84,
   "name": "Natsu Dragneel",
   "rarity": "S",
   "desc": "Fairy Tail",
-  "image": "public/cards/s/s-natsu.jpg"
+  "image": "static/public/cards/s/s-natsu.jpg"
 },
 {
   "id": 85,
   "name": "Nakano Miku",
   "rarity": "S",
   "desc": "Quintessential Quintuplets",
-  "image": "public/cards/s/s-miku.jpg"
+  "image": "static/public/cards/s/s-miku.jpg"
 },
 {
   "id": 86,
   "name": "Ishigami Yuu",
   "rarity": "S",
   "desc": "Kaguya-sama: Love is War",
-  "image": "public/cards/s/s-ishigami.jpg"
+  "image": "static/public/cards/s/s-ishigami.jpg"
 },
 {
   "id": 87,
   "name": "Trafalgar Law",
   "rarity": "S",
   "desc": "One Piece",
-  "image": "public/cards/s/s-law.jpg"
+  "image": "static/public/cards/s/s-law.jpg"
 },
 {
   "id": 88,
   "name": "Denji",
   "rarity": "S",
   "desc": "Chainsaw Man",
-  "image": "public/cards/s/s-denji.jpg"
+  "image": "static/public/cards/s/s-denji.jpg"
 },
 {
   "id": 89,
   "name": "Armin Arlert",
   "rarity": "S",
   "desc": "Attack on Titan",
-  "image": "public/cards/s/s-armin.jpg"
+  "image": "static/public/cards/s/s-armin.jpg"
 },
 {
   "id": 90,
   "name": "Ayanami Rei",
   "rarity": "S",
   "desc": "Evangelion",
-  "image": "public/cards/s/s-rei.jpg"
+  "image": "static/public/cards/s/s-rei.jpg"
 },
 {
   "id": 91,
   "name": "Vegeta",
   "rarity": "S",
   "desc": "Dragon Ball",
-  "image": "public/cards/s/s-vegeta.jpg"
+  "image": "static/public/cards/s/s-vegeta.jpg"
 },
 {
   "id": 92,
   "name": "Satou Kazuma",
   "rarity": "S",
   "desc": "KonoSuba",
-  "image": "public/cards/s/s-kazuma.jpg"
+  "image": "static/public/cards/s/s-kazuma.jpg"
 },
 {
   "id": 93,
   "name": "Maomao",
   "rarity": "S",
   "desc": "Kusuriya no Hitorigoto",
-  "image": "public/cards/s/s-maomao.jpg"
+  "image": "static/public/cards/s/s-maomao.jpg"
 },
 {
   "id": 94,
   "name": "Ikari Shinji",
   "rarity": "S",
   "desc": "Evangelion",
-  "image": "public/cards/s/s-shinji.jpg"
+  "image": "static/public/cards/s/s-shinji.jpg"
 },
 {
   "id": 95,
   "name": "Hange Zoë",
   "rarity": "S",
   "desc": "Attack on Titan",
-  "image": "public/cards/s/s-hange.jpg"
+  "image": "static/public/cards/s/s-hange.jpg"
 },
 {
   "id": 96,
   "name": "Koro-sensei",
   "rarity": "S",
   "desc": "Assassination Classroom",
-  "image": "public/cards/s/s-koro.jpg"
+  "image": "static/public/cards/s/s-koro.jpg"
 },
 {
   "id": 97,
   "name": "Rias Gremory",
   "rarity": "S",
   "desc": "Highschool DxD",
-  "image": "public/cards/s/s-rias.jpg"
+  "image": "static/public/cards/s/s-rias.jpg"
 },
 {
   "id": 98,
   "name": "Musashi Miyamoto",
   "rarity": "S",
   "desc": "Vagabond",
-  "image": "public/cards/s/s-musashi.jpg"
+  "image": "static/public/cards/s/s-musashi.jpg"
 },
 {
   "id": 99,
   "name": "Takanashi Rikka",
   "rarity": "S",
   "desc": "Chuunibyou demo Koi ga Shitai!",
-  "image": "public/cards/s/s-rikka.jpg"
+  "image": "static/public/cards/s/s-rikka.jpg"
 },
 {
   "id": 100,
   "name": "Hinata Shoyou",
   "rarity": "S",
   "desc": "Haikyuu",
-  "image": "public/cards/s/s-hinataS.jpg"
+  "image": "static/public/cards/s/s-hinataS.jpg"
 },
 {
   "id": 101,
