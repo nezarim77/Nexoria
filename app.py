@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory
 import json
 import random
 import os
@@ -65,8 +65,12 @@ def load_cards():
                 c['image'] = f'public/cards/{img}'
 
             # persist these assignments back to cards.json so they're stable
-            with open(CARDS_FILE, 'w', encoding='utf-8') as f:
-                json.dump(cards, f, indent=2, ensure_ascii=False)
+            try:
+                with open(CARDS_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(cards, f, indent=2, ensure_ascii=False)
+            except Exception:
+                # On serverless platforms writing to disk may fail; log and continue without persisting
+                app.logger.exception("Failed to persist card image assignments; continuing without saving")
 
     return cards
 
@@ -143,7 +147,12 @@ def pull():
     if user.get('coins', 0) < total_cost:
         return jsonify({'ok': False, 'error': 'Not enough coins'}), 400
 
-    cards = load_cards()
+    try:
+        cards = load_cards()
+    except Exception as e:
+        app.logger.exception('Failed to load cards during pull')
+        return jsonify({'ok': False, 'error': 'Failed to load cards', 'detail': str(e)}), 500
+
     rarities = choose_rarity(count)
     results = []
     for r in rarities:
@@ -231,6 +240,17 @@ def reset():
         app.logger.exception("Failed to reset user data")
         return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
     return jsonify({'ok': True})
+
+
+# Serve assets explicitly for hosting environments that don't expose Flask's static folder
+@app.route('/static/public/assets/<path:filename>')
+def public_asset(filename):
+    assets_dir = os.path.join(BASE_DIR, 'static', 'public', 'assets')
+    try:
+        return send_from_directory(assets_dir, filename)
+    except Exception:
+        app.logger.exception('Failed to serve public asset: %s', filename)
+        return ('', 404)
 
 
 if __name__ == '__main__':
