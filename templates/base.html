@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nexoria</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="/" class="brand">
+        <img src="/static/public/assets/logo.png" alt="Nexoria Logo" class="logo">
+        <h1>Nexoria</h1>
+      </a>
+      <div class="account">
+        <div class="coins">Coins: <span id="coins">{{ coins }}</span></div>
+        <div class="tickets">Tickets: <span id="tickets">{{ tickets }}</span></div>
+      </div>
+    </header>
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

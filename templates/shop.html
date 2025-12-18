@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Shop</h2>
+  <div class="shop-panel">
+    <div class="shop-boxes">
+      {% for rarity, info in boxes.items() %}
+        <div class="box">
+          <h3>{{ info.label }}</h3>
+          <p>Cost: {{ info.cost }} tickets</p>
+          <button class="buyBox" data-rarity="{{ rarity }}" data-cost="{{ info.cost }}">Beli</button>
+        </div>
+      {% endfor %}
+    </div>
+    <div id="shopResult" class="result-area gacha-results"></div>
+  </div>
+{% endblock %}

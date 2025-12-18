@@ -1,0 +1,716 @@
+:root{
+  /* =========================
+     BASE COLORS
+  ========================= */
+  --bg:#0f1624;
+  --panel:#242424;
+  --accent:#6ec1ff;
+  --muted:#9aa6b2;
+
+  /* =========================
+     RARITY RGB VALUES
+     dipakai via rgba(var(--rarity-color), alpha)
+  ========================= */
+  --rarity-d:   136, 136, 136;   /* grey */
+  --rarity-c:   143, 211, 154;   /* light green */
+  --rarity-b:   0, 0, 255;    /* blue */
+  --rarity-a:   255, 0, 255;    /* purple */
+  --rarity-s:   255, 0, 0;       /* red */
+  --rarity-ss:  255, 255, 0;    /* gold */
+  --rarity-sss: 255, 100, 150;   /* pink */
+
+  /* UR gradient colors */
+  --rarity-ur1: 255, 0, 128;
+  --rarity-ur2: 255, 128, 0;
+  --rarity-ur3: 127, 255, 0;
+  --rarity-ur4: 0, 255, 255;
+  --rarity-ur5: 127, 0, 255;
+
+  --topbar-height:72px;
+}
+/* =========================
+   CARD BASE (RARITY DOMINANT)
+========================= */
+.card-front{
+  background: var(--panel-color, var(--panel));
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+
+  /* rarity glow */
+  box-shadow:
+    0 0 18px rgba(var(--rarity-color), 0.65),
+    inset 0 0 28px rgba(var(--rarity-color), 0.12);
+}
+
+/* rarity overlay */
+.card-front::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: rgba(var(--rarity-color), 0.12);
+  pointer-events:none;
+}
+
+.rarity-sss .card-front::before{
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.18),
+    rgba(255,100,150,0.32)
+  );
+}
+
+@keyframes sssShimmer{
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.rarity-sss .card-front{
+  background-size: 200% 200%;
+  animation: sssShimmer 5s linear infinite;
+}
+
+
+/* =========================
+   TEXT SAFETY
+========================= */
+.card-name{
+  color:#ffffff;
+  font-weight:700;
+}
+
+.card-desc{
+  color:#444;
+}
+
+.card-rarity{
+  color: rgb(var(--rarity-color));
+  font-weight:800;
+}
+
+.rarity-ur .card-front{
+  background: linear-gradient(
+    135deg,
+    rgba(var(--rarity-ur1), 0.30),
+    rgba(var(--rarity-ur2), 0.30),
+    rgba(var(--rarity-ur3), 0.30),
+    rgba(var(--rarity-ur4), 0.30),
+    rgba(var(--rarity-ur5), 0.30)
+  );
+  animation: urGlow 6s linear infinite;
+}
+
+@keyframes urGlow{
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+/* =========================
+   SSS DUAL COLOR EFFECT
+========================= */
+.rarity-sss .card-front{
+  background: linear-gradient(
+    135deg,
+    rgba(255,100,150,0.45),
+    rgba(255,255,255,0.35),
+    rgba(255,100,150,0.45)
+  );
+
+  box-shadow:
+    0 0 28px rgba(255,100,150,0.55),
+    0 0 44px rgba(255,255,255,0.35);
+}
+
+
+
+*{box-sizing:border-box;font-family:Inter,Segoe UI,Arial,sans-serif}
+/* Slightly brighter background for better readability */
+body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
+.topbar{display:flex;align-items:center;gap:16px;padding:12px 20px;background:rgba(0,0,0,0.12);position:fixed;top:0;left:0;right:0;height:var(--topbar-height);z-index:1000;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,0.45)}
+.topbar .brand{display:flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer}
+.topbar .brand:hover{opacity:0.8}
+.topbar .logo{height:32px;width:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,0.85));}
+.topbar h1{margin:0;font-size:20px;color:var(--accent);text-shadow:0 2px 6px rgba(0,0,0,0.85)}
+.topbar nav a{color:var(--accent);margin-right:8px;text-decoration:none}
+.account{margin-left:auto;display:flex;gap:12px;align-items:center}
+.coins{}
+.tickets{font-weight:800}
+.container{padding:20px;padding-top:calc(var(--topbar-height) + 20px)}
+.menu{display:flex;gap:12px}
+.menu-card{display:inline-block;padding:18px 24px;background:var(--panel);border-radius:8px;color:var(--accent);text-decoration:none}
+.gacha-panel{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,#7f1a1a,#b32121);padding:20px;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.6);align-items:center}
+.gacha-hero{display:flex;flex-direction:column;align-items:center;gap:12px;margin:8px}
+.gacha-hero img{max-width:220px;width:70%;height:auto}
+.gacha-invite{text-align:center;font-weight:800;color:#fff;margin-top:6px}
+
+.no-coins{display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px}
+.no-coins img{max-width:220px;width:60%;height:auto;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6))}
+.no-coins-text{font-weight:900;color:#fff;font-size:1.1rem}
+.result-area{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.gacha-results{display:grid;grid-template-columns:repeat(5, minmax(220px,1fr));gap:12px}
+.gacha-results.single{grid-template-columns:1fr;justify-items:center}
+.gacha-results .card{min-height:320px}
+
+/* Colored, robust gacha card tile */
+.gacha-results .card{
+  position: relative;
+  overflow: visible;
+  transition: transform .12s ease;
+  border-radius: 12px;
+  /* keep a stable size using aspect-ratio to avoid collapse on narrow screens */
+  aspect-ratio: 2 / 3;
+  min-height: 160px; /* ensures visible tile even if content loading is delayed */
+  /* slightly stronger base border for more presence */
+  border: 2px solid rgba(255,255,255,0.06);
+  display: block;
+}
+.gacha-results .card::after{
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 18px;
+  pointer-events: none;
+  transition: box-shadow .18s ease, opacity .18s ease;
+  opacity: 1;
+  /* small blur to smooth glow edge */
+  filter: blur(2px);
+}
+/* ensure inner front/image expand to fill the tile */
+.gacha-results .card .card-front, .gacha-results .card .card-image{width:100%;height:100%;display:block}
+
+.gacha-results .card.rarity-d{border-color: rgba(var(--rarity-d),0.14)}
+.gacha-results .card.rarity-d::after{box-shadow: 0 0 20px rgba(var(--rarity-d),0.40)}
+.gacha-results .card.rarity-c{border-color: rgba(var(--rarity-c),0.14)}
+.gacha-results .card.rarity-c::after{box-shadow: 0 0 22px rgba(var(--rarity-c),0.44)}
+.gacha-results .card.rarity-b{border-color: rgba(var(--rarity-b),0.16)}
+.gacha-results .card.rarity-b::after{box-shadow: 0 0 22px rgba(var(--rarity-b),0.44)}
+.gacha-results .card.rarity-a{border-color: rgba(var(--rarity-a),0.16)}
+.gacha-results .card.rarity-a::after{box-shadow: 0 0 24px rgba(var(--rarity-a),0.46)}
+.gacha-results .card.rarity-s{border-color: rgba(var(--rarity-s),0.20)}
+.gacha-results .card.rarity-s::after{box-shadow: 0 0 28px rgba(var(--rarity-s),0.48)}
+.gacha-results .card.rarity-ss{border-color: rgba(var(--rarity-ss),0.20)}
+.gacha-results .card.rarity-ss::after{box-shadow: 0 0 30px rgba(var(--rarity-ss),0.46)}
+.gacha-results .card.rarity-sss{border-color: rgba(var(--rarity-sss),0.20)}
+.gacha-results .card.rarity-sss::after{box-shadow: 0 0 34px rgba(var(--rarity-sss),0.52)}
+.gacha-results .card.rarity-ur{border-color: rgba(255,255,255,0.10)}
+.gacha-results .card.rarity-ur::after{box-shadow: 0 0 36px rgba(var(--rarity-ur1),0.36), 0 0 30px rgba(var(--rarity-ur2),0.28), 0 0 26px rgba(var(--rarity-ur3),0.22)}
+
+/* Slight hover pop for clarity */
+.gacha-results .card:hover{transform:translateY(-6px);}
+
+/* Apply same stronger blurred outline for centered shop result card */
+.shop-result-center .card{position:relative; border:2px solid rgba(255,255,255,0.06);}
+.shop-result-center .card::after{content:'';position:absolute;inset:-10px;border-radius:18px;pointer-events:none;transition:box-shadow .18s ease,opacity .18s ease;opacity:1;filter:blur(2px)}
+.shop-result-center .card.rarity-s::after{box-shadow:0 0 28px rgba(var(--rarity-s),0.48)}
+.shop-result-center .card.rarity-ss::after{box-shadow:0 0 30px rgba(var(--rarity-ss),0.46)}
+.shop-result-center .card.rarity-sss::after{box-shadow:0 0 34px rgba(var(--rarity-sss),0.52)}
+.shop-result-center .card.rarity-ur::after{box-shadow:0 0 36px rgba(var(--rarity-ur1),0.36),0 0 30px rgba(var(--rarity-ur2),0.28)}
+*** End Patch
+.gacha-controls.center{display:flex;justify-content:center;margin-bottom:12px}
+.deck-groups{display:flex;flex-direction:column;gap:28px}
+.rarity-group{padding:6px 0}
+.rarity-header{font-weight:900;font-size:1.05rem;margin:6px 12px;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.group-cards{display:grid;grid-template-columns:repeat(5,minmax(160px,1fr));gap:18px;padding:0 6px}
+
+.rarity-ur .rarity-header{color:#ffd966;text-shadow:0 2px 8px rgba(255,217,102,0.45)}
+.rarity-sss .rarity-header{color:#ff6fa7;text-shadow:0 2px 8px rgba(255,111,167,0.35)}
+.rarity-ss .rarity-header{color:#c6b9ff;text-shadow:0 2px 8px rgba(198,185,255,0.28)}
+.rarity-s .rarity-header{color:#ff4a4a;text-shadow:0 2px 8px rgba(255,74,74,0.35)}
+.rarity-a .rarity-header{color:#ffd1a2}
+.rarity-b .rarity-header{color:#e6f0a3}
+.rarity-c .rarity-header{color:#d0d0d0}
+.rarity-d .rarity-header{color:#9e9e9e}
+.gacha-pull{padding:20px 28px;border-radius:14px;font-weight:700;background:linear-gradient(180deg,var(--accent), #85cdfc);border:0;color:#111}
+
+/* Flip card animation */
+.flip-card{perspective:1200px}
+.flip-card .card-inner{position:relative;width:100%;height:100%;transition:transform 0.8s;transform-style:preserve-3d}
+.flip-card .card-front, .flip-card .card-back{position:absolute;top:0;left:0;width:100%;height:100%;backface-visibility:hidden}
+.flip-card .card-back{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#0d151f,#01121a);color:var(--muted);font-size:18px}
+.flip-card .card-front{transform:rotateY(180deg)}
+.flip-card.flipped .card-inner{transform:rotateY(180deg)}
+
+.card-back-result .back-logo{font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.65)}
+/* Per-rarity back colors for flip card */
+.rarity-d .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-d),0.28), rgba(0,0,0,0.35));color:#fff}
+.rarity-c .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-c),0.28), rgba(0,0,0,0.35));color:#fff}
+.rarity-b .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-b),0.28), rgba(0,0,0,0.35));color:#fff}
+.rarity-a .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-a),0.30), rgba(0,0,0,0.35));color:#fff}
+.rarity-s .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-s),0.40), rgba(0,0,0,0.36));color:#fff;box-shadow:0 8px 28px rgba(var(--rarity-s),0.22)}
+.rarity-ss .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-ss),0.36), rgba(0,0,0,0.36));color:#111;box-shadow:0 8px 44px rgba(var(--rarity-ss),0.24)}
+.rarity-sss .card-back-result{background:linear-gradient(180deg, rgba(var(--rarity-sss),0.66), rgba(0,0,0,0.22));color:#fff;box-shadow:0 12px 72px rgba(var(--rarity-sss),0.36)}
+.rarity-ur .card-back-result{background:linear-gradient(90deg, rgba(var(--rarity-ur1),0.45), rgba(var(--rarity-ur2),0.45), rgba(var(--rarity-ur3),0.45), rgba(var(--rarity-ur4),0.45), rgba(var(--rarity-ur5),0.45));color:#111;box-shadow:0 0 40px rgba(var(--rarity-ur1),0.22), 0 0 40px rgba(var(--rarity-ur2),0.22), 0 0 40px rgba(var(--rarity-ur3),0.22)}
+
+.card-back-result .back-logo{font-weight:900;letter-spacing:2px;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
+
+/* Make locked card backs use the same rarity colors */
+.card-back.rarity-d{background:linear-gradient(180deg, rgba(var(--rarity-d),0.28), rgba(0,0,0,0.35));color:#fff}
+.card-back.rarity-c{background:linear-gradient(180deg, rgba(var(--rarity-c),0.28), rgba(0,0,0,0.35));color:#fff}
+.card-back.rarity-b{background:linear-gradient(180deg, rgba(var(--rarity-b),0.28), rgba(0,0,0,0.35));color:#fff}
+.card-back.rarity-a{background:linear-gradient(180deg, rgba(var(--rarity-a),0.30), rgba(0,0,0,0.35));color:#fff}
+.card-back.rarity-s{background:linear-gradient(180deg, rgba(var(--rarity-s),0.40), rgba(0,0,0,0.36));color:#fff;box-shadow:0 8px 28px rgba(var(--rarity-s),0.22)}
+.card-back.rarity-ss{background:linear-gradient(180deg, rgba(var(--rarity-ss),0.36), rgba(0,0,0,0.36));color:#111;box-shadow:0 8px 44px rgba(var(--rarity-ss),0.24)}
+.card-back.rarity-sss{background:linear-gradient(180deg, rgba(var(--rarity-sss),0.66), rgba(0,0,0,0.22));color:#fff;box-shadow:0 12px 72px rgba(var(--rarity-sss),0.36)}
+.card-back.rarity-ur{background:linear-gradient(90deg, rgba(var(--rarity-ur1),0.45), rgba(var(--rarity-ur2),0.45), rgba(var(--rarity-ur3),0.45), rgba(var(--rarity-ur4),0.45), rgba(var(--rarity-ur5),0.45));color:#111;box-shadow:0 0 40px rgba(var(--rarity-ur1),0.22), 0 0 40px rgba(var(--rarity-ur2),0.22), 0 0 40px rgba(var(--rarity-ur3),0.22)}
+
+.card-back-result .ribbon{position:absolute;top:12px;left:-28px;transform:rotate(-45deg);padding:6px 40px;font-weight:800;font-size:0.85rem;border-radius:2px;color:#111;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+.card-back-result .ribbon{background:rgba(0,0,0,0.08);}
+.rarity-d .card-back-result .ribbon{background:rgba(var(--rarity-d),0.9);color:#fff}
+.rarity-c .card-back-result .ribbon{background:rgba(var(--rarity-c),0.95);color:#111}
+.rarity-b .card-back-result .ribbon{background:rgba(var(--rarity-b),0.95);color:#fff}
+.rarity-a .card-back-result .ribbon{background:rgba(var(--rarity-a),0.95);color:#fff}
+.rarity-s .card-back-result .ribbon{background:rgba(var(--rarity-s),0.95);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.6)}
+.rarity-ss .card-back-result .ribbon{background:rgba(var(--rarity-ss),0.95);color:#111}
+.rarity-sss .card-back-result .ribbon{background:rgba(var(--rarity-sss),0.95);color:#fff}
+.rarity-ur .card-back-result .ribbon{background:linear-gradient(90deg, rgba(var(--rarity-ur1),1), rgba(var(--rarity-ur2),1), rgba(var(--rarity-ur3),1));color:#fff}
+
+/* UR animated gradient */
+@keyframes urShift {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.rarity-ur .card-back-result, .card-back.rarity-ur{background-size:300% 300%;animation:urShift 8s linear infinite}
+.deck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{background:var(--panel);padding:0;border-radius:12px;min-height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-back{font-size:48px;color:var(--muted);width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.card-front{position:relative;width:100%;height:100%;display:block}
+.card-image{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
+/* Overlay and text */
+.card-overlay{position:absolute;left:0;right:0;bottom:0;padding:12px;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.75));color:#fff;box-shadow:0 -8px 28px rgba(0,0,0,0.6);backdrop-filter: blur(2px);border-radius:0 0 12px 12px}
+.card-overlay .card-name{font-weight:800;font-size:1.05rem;margin-bottom:4px;text-shadow:0 2px 8px rgba(0,0,0,0.85)}
+.card-overlay .card-rarity{font-weight:700;font-size:0.95rem;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.85)}
+.card-overlay .card-desc{font-size:0.9rem;color:#ffffff;text-shadow:0 2px 8px rgba(0,0,0,0.85)}
+.duplicate-badge{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,0.5);color:#fff;font-weight:800;font-size:0.85rem;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+.card-front .card-name{font-weight:700}
+.card-front .card-rarity{font-weight:700}
+.rarity-c{background:linear-gradient(180deg,#193a08,#224b12)}
+.rarity-b{background:linear-gradient(180deg,#083a4a,#0b4f64)}
+.rarity-a{background:linear-gradient(180deg,#3e0f3d,#5a1b63)}
+.rarity-s{background:linear-gradient(180deg,#453b00,#7f5a11);color:#111}
+.rarity-d .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.36));box-shadow:0 10px 26px rgba(var(--rarity-d),0.14)}
+.rarity-c .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.40));box-shadow:0 10px 26px rgba(var(--rarity-c),0.16)}
+.rarity-b .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.40));box-shadow:0 10px 26px rgba(var(--rarity-b),0.16)}
+.rarity-a .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.40));box-shadow:0 10px 26px rgba(var(--rarity-a),0.16)}
+.rarity-s .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.52));box-shadow:0 18px 56px rgba(var(--rarity-s),0.34)}
+.rarity-ss .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.44));box-shadow:0 18px 56px rgba(var(--rarity-ss),0.34)}
+.rarity-sss .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.48));box-shadow:0 20px 64px rgba(var(--rarity-sss),0.38)}
+.rarity-ur .card-overlay{background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.30));box-shadow:0 0 40px rgba(var(--rarity-ur1),0.28), 0 0 40px rgba(var(--rarity-ur2),0.28), 0 0 40px rgba(var(--rarity-ur3),0.28), 0 0 40px rgba(var(--rarity-ur4),0.28), 0 0 40px rgba(var(--rarity-ur5),0.28)}
+
+/* add bold colored shadows on the card tiles (per rarity) */
+.rarity-d .card{box-shadow: 0 8px 30px rgba(var(--rarity-d),0.28); border:1px solid rgba(var(--rarity-d),0.12)}
+.rarity-c .card{box-shadow: 0 10px 32px rgba(var(--rarity-c),0.30); border:1px solid rgba(var(--rarity-c),0.14)}
+.rarity-b .card{box-shadow: 0 12px 36px rgba(var(--rarity-b),0.34); border:1px solid rgba(var(--rarity-b),0.16)}
+.rarity-a .card{box-shadow: 0 14px 40px rgba(var(--rarity-a),0.36); border:1px solid rgba(var(--rarity-a),0.16)}
+.rarity-s .card{box-shadow: 0 18px 56px rgba(var(--rarity-s),0.46), 0 28px 80px rgba(var(--rarity-s),0.24); border:2px solid rgba(var(--rarity-s),0.22)}
+.rarity-ss .card{box-shadow: 0 20px 64px rgba(var(--rarity-ss),0.46), 0 32px 96px rgba(var(--rarity-ss),0.26); border:2px solid rgba(var(--rarity-ss),0.22)}
+.rarity-sss .card{box-shadow: 0 22px 72px rgba(var(--rarity-sss),0.52), 0 36px 112px rgba(var(--rarity-sss),0.28); border:2px solid rgba(var(--rarity-sss),0.24)}
+.rarity-ur .card{box-shadow: 0 0 48px rgba(var(--rarity-ur1),0.36), 0 0 42px rgba(var(--rarity-ur2),0.30), 0 0 36px rgba(var(--rarity-ur3),0.28), 0 0 30px rgba(var(--rarity-ur4),0.26), 0 0 30px rgba(var(--rarity-ur5),0.26); border:2px solid rgba(255,255,255,0.10)}
+
+/* Mirror the bold shadow for centered shop result */
+.shop-result-center .card.rarity-d{box-shadow: 0 8px 30px rgba(var(--rarity-d),0.28)}
+.shop-result-center .card.rarity-c{box-shadow: 0 10px 32px rgba(var(--rarity-c),0.30)}
+.shop-result-center .card.rarity-b{box-shadow: 0 12px 36px rgba(var(--rarity-b),0.34)}
+.shop-result-center .card.rarity-a{box-shadow: 0 14px 40px rgba(var(--rarity-a),0.36)}
+.shop-result-center .card.rarity-s{box-shadow: 0 18px 56px rgba(var(--rarity-s),0.46), 0 28px 80px rgba(var(--rarity-s),0.24)}
+.shop-result-center .card.rarity-ss{box-shadow: 0 20px 64px rgba(var(--rarity-ss),0.46), 0 32px 96px rgba(var(--rarity-ss),0.26)}
+.shop-result-center .card.rarity-sss{box-shadow: 0 22px 72px rgba(var(--rarity-sss),0.52), 0 36px 112px rgba(var(--rarity-sss),0.28)}
+.shop-result-center .card.rarity-ur{box-shadow: 0 0 48px rgba(var(--rarity-ur1),0.36), 0 0 42px rgba(var(--rarity-ur2),0.30), 0 0 36px rgba(var(--rarity-ur3),0.28)}
+.shop-panel{display:flex;flex-direction:column;gap:18px}
+.shop-boxes{display:flex;gap:12px;flex-wrap:wrap}
+.box{background:var(--panel);padding:12px;border-radius:8px;width:220px}
+.shop-result{margin-top:12px}
+.shop-boxes .box button:disabled{opacity:0.6;cursor:not-allowed}
+button{background:var(--accent);color:#321604;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+
+/* Lobby hero */
+.lobby{display:flex;flex-direction:column;align-items:center;gap:24px}
+.lobby-hero{width:100%;display:flex;justify-content:center}
+.lobby-image{max-width:350px;width:80%;height:auto;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.45);border:6px solid rgba(255,255,255,0.03)}
+.lobby-menu{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.lobby-menu .menu-card{min-width:120px;text-align:center}
+
+.no-coins-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+}
+
+.no-coins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: popIn .3s ease-out;
+}
+
+.no-coins img {
+  width: 500px;
+}
+
+.no-coins-text {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+@keyframes popIn {
+  from { transform: scale(.9); opacity: 0 }
+  to   { transform: scale(1); opacity: 1 }
+}
+
+/* ===============================
+   NO COINS OVERLAY + SHAKE
+   =============================== */
+.no-coins-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.65);
+  z-index: 9999;
+}
+
+.no-coins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: popIn .25s ease-out, shake .45s ease-in-out .15s;
+}
+
+.no-coins img {
+  width: 260px;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+}
+
+.no-coins-text {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.no-coins-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.no-coins-actions button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.no-coins-actions .go-shop {
+  background: linear-gradient(180deg, #ffd36b, #f2b94f);
+  color: #321604;
+}
+
+.no-coins-actions .close {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+.no-coins-actions button:hover {
+  transform: translateY(-2px);
+}
+
+/* animations */
+@keyframes popIn {
+  from { transform: scale(.85); opacity: 0 }
+  to   { transform: scale(1); opacity: 1 }
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0) }
+  20%  { transform: translateX(-8px) }
+  40%  { transform: translateX(8px) }
+  60%  { transform: translateX(-6px) }
+  80%  { transform: translateX(6px) }
+  100% { transform: translateX(0) }
+}
+
+/* =========================
+   MODAL GLOBAL
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.modal {
+  background: linear-gradient(180deg,#1a2233,#0e1422);
+  border-radius: 14px;
+  padding: 24px 28px;
+  min-width: 320px;
+  max-width: 90%;
+  text-align: center;
+  animation: popIn .25s ease-out;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.modal h3 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.modal p {
+  color: #cbd6e2;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  font-weight: 700;
+}
+
+.btn-danger {
+  background: #e63946;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #444;
+  color: #fff;
+}
+
+/* =========================
+   BOX OPENING ANIMATION
+========================= */
+.box-opening {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 40px auto;
+  animation: shake .5s ease-in-out 2;
+}
+
+.box-opening img {
+  width: 100%;
+  height: auto;
+}
+
+.box-opening.opened {
+  animation: none;
+}
+
+/* when box is marked opened, slightly fade it so the centered card stands out */
+/* keep box fully opaque during animation */
+
+@keyframes shake {
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
+
+/* rarity-specific box effects */
+.box-opening.rarity-s img {
+  filter: drop-shadow(0 0 12px rgba(255,80,80,.8));
+}
+
+.box-opening.rarity-ss img {
+  filter: drop-shadow(0 0 22px gold);
+  animation: shake .35s ease-in-out 3;
+}
+
+.box-opening.rarity-sss img {
+  filter: drop-shadow(0 0 30px hotpink);
+}
+
+.box-opening.rarity-ur img {
+  filter:
+    drop-shadow(0 0 20px red)
+    drop-shadow(0 0 20px orange)
+    drop-shadow(0 0 20px yellow);
+}
+
+/* =========================
+   SHOP OVERLAY (BOX OPENING)
+========================= */
+.shop-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-overlay-content {
+  position: relative;
+  animation: popIn .25s ease-out;
+}
+
+.shop-overlay .result-area {
+  margin: 0;
+}
+
+.shop-overlay-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.shop-overlay .result-area{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.shop-overlay .box-opening{
+  margin: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none;
+  transform-origin: center;
+}
+
+.box-opening,
+.box-opening img{
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 18px rgba(255,215,0,0.6));
+}
+
+.shop-overlay-cards {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* centered result that sits above the overlay content */
+.shop-result-center{
+  position: fixed; /* positioned on the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000; /* above overlay */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  pointer-events: auto;
+}
+
+.shop-result-center .center-card{max-width:420px}
+
+.shop-result-center-close{
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(230,57,70,0.95);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* hide box container when card is shown centered */
+.shop-overlay .shop-box-container.hidden{display:none !important}
+
+/* make centered card visually larger */
+.shop-result-center .card{
+  /* match deck card sizing (compact) */
+  width: 200px; /* same as deck min width */
+  max-width: 240px;
+  aspect-ratio: 2 / 3;
+  display:block;
+}
+.shop-result-center .card-image{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+
+/* =========================
+   RESPONSIVE: Mobile Touch-Friendly Styles
+   ========================= */
+@media (max-width: 768px) {
+  :root{--topbar-height:64px}
+  .topbar{padding:10px 14px;height:var(--topbar-height);gap:8px}
+  .topbar .brand h1{font-size:16px}
+  .topbar .logo{height:28px;width:28px}
+  .account{gap:8px}
+
+  .container{padding:14px;padding-top:calc(var(--topbar-height) + 12px)}
+
+  /* Gacha grid -> 2 columns */
+  .gacha-results{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gacha-results .card{min-height:280px}
+
+  /* Deck groups -> 2 columns */
+  .group-cards{grid-template-columns:repeat(2,minmax(140px,1fr));gap:12px}
+
+  /* Buttons larger for touch */
+  button{padding:12px 16px;font-size:1rem;border-radius:10px}
+  .gacha-pull{padding:16px 18px}
+
+  /* Modal and overlays fit screen better */
+  .modal{padding:18px 20px;min-width:auto;max-width:96%}
+  .shop-overlay-content{max-height:88vh;overflow:auto;padding:12px}
+  .shop-overlay-close{width:44px;height:44px;top:-18px;right:-18px}
+
+  /* Centered card scales down on narrow screens */
+  .shop-result-center .card{width:160px;max-width:200px}
+}
+
+@media (max-width: 420px) {
+  /* Small phones -> keep two cards per row (2 columns) for gacha results */
+  .gacha-results{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gacha-results .card{min-height:220px}
+
+  /* Deck groups -> single column for deck listing */
+  .group-cards{grid-template-columns:repeat(1,1fr);gap:10px}
+
+  /* Make overlays align to bottom so content is reachable */
+  .modal-overlay, .shop-overlay{align-items:flex-end;padding-bottom:20px}
+  .shop-overlay-content{width:100%;margin:0;border-radius:12px}
+  .shop-result-center{top:auto;left:50%;bottom:12%;transform:translateX(-50%);}
+
+  /* Larger touch targets and slightly bigger text */
+  .card-overlay .card-name{font-size:1.05rem}
+  .no-coins-text{font-size:1.6rem}
+}

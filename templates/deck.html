@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Deck</h2>
+  <div class="deck-groups">
+    {% for rarity, group in grouped_cards %}
+      <div class="rarity-group rarity-{{ rarity|lower }}">
+        <div class="rarity-header">{{ rarity }}</div>
+        <div class="group-cards">
+          {% for card in group %}
+            <div class="card">
+              {% if card.id in owned %}
+                <div class="card-front rarity-{{ card.rarity|lower }}">
+                  {% if card.image %}
+                    <img
+  class="card-image"
+  src="{{ card.image if card.image.startswith('http') else url_for('static', filename=card.image) }}"
+  alt="{{ card.name }}"
+>
+
+                  {% endif %}
+                  <div class="card-overlay">
+                    <div class="card-name">{{ card.name }}</div>
+                    <div class="card-rarity">{{ card.rarity }}</div>
+                    <div class="card-desc">{{ card.desc }}</div>
+                  </div>
+                </div>
+              {% else %}
+                <div class="card-back rarity-{{ card.rarity|lower }}">
+                  <div class="back-content">?</div>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
