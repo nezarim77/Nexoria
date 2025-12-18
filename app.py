@@ -2,100 +2,70 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 import json
 import random
 import os
-import json
-
-
 
 BASE_DIR = os.path.dirname(__file__)
 CARDS_FILE = os.path.join(BASE_DIR, 'cards.json')
-USER_FILE = os.path.join(BASE_DIR, 'user_data.json')
+
+# ❗ user_data.json TIDAK DIPAKAI LAGI
+USER_CACHE = {
+    "coins": 100000,
+    "owned": [],
+    "tickets": 0
+}
 
 app = Flask(__name__)
 
-# Ticket rewards for duplicates by rarity
-TICKET_REWARDS = {
-    'D': 1,
-    'C': 4,
-    'B': 20,
-    'A': 50,
-    'S': 150,
-    'SS': 500,
-    'SSS': 2000,
-    'UR': 5000,
-}
-
-# Box definitions for shop (rarity -> label & ticket cost)
-BOXES = {
-    'UR': {'label': 'UR Box', 'cost': 10000},
-    'SSS': {'label': 'SSS Box', 'cost': 4000},
-    'SS': {'label': 'SS Box', 'cost': 1000},
-    'S': {'label': 'S Box', 'cost': 300},
-    'A': {'label': 'A Box', 'cost': 100},
-    'B': {'label': 'B Box', 'cost': 40},
-    'C': {'label': 'C Box', 'cost': 8},
-    'D': {'label': 'D Box', 'cost': 3},
-}
-
-
+# =========================
+# LOAD CARDS (READ-ONLY)
+# =========================
 def load_cards():
     with open(CARDS_FILE, 'r', encoding='utf-8') as f:
         cards = json.load(f)
 
-    # Ensure 10 cards have images assigned using files from static/public/cards
     assigned = [c for c in cards if c.get('image')]
     if len(assigned) < 10:
         cards_dir = os.path.join(BASE_DIR, 'static', 'public', 'cards')
         try:
-            imgs = [fn for fn in os.listdir(cards_dir) if os.path.isfile(os.path.join(cards_dir, fn))]
+            imgs = [
+                fn for fn in os.listdir(cards_dir)
+                if os.path.isfile(os.path.join(cards_dir, fn))
+            ]
         except Exception:
             imgs = []
 
-        used_imgs = [os.path.basename(c['image']) for c in cards if c.get('image')]
+        used_imgs = [
+            os.path.basename(c['image'])
+            for c in cards if c.get('image')
+        ]
         available_imgs = [i for i in imgs if i not in used_imgs]
-
         no_image_cards = [c for c in cards if not c.get('image')]
+
         needed = 10 - len(assigned)
         assign_count = min(needed, len(available_imgs), len(no_image_cards))
+
         if assign_count > 0:
             random.shuffle(available_imgs)
             selected_imgs = random.sample(available_imgs, assign_count)
             selected_cards = random.sample(no_image_cards, assign_count)
+
             for c, img in zip(selected_cards, selected_imgs):
-                # store path relative to the `static` folder for url_for('static', filename=...)
                 c['image'] = f'public/cards/{img}'
 
-            # persist these assignments back to cards.json so they're stable
-            try:
-                with open(CARDS_FILE, 'w', encoding='utf-8') as f:
-                    json.dump(cards, f, indent=2, ensure_ascii=False)
-            except Exception:
-                # On serverless platforms writing to disk may fail; log and continue without persisting
-                app.logger.exception("Failed to persist card image assignments; continuing without saving")
+            # ❌ JANGAN DISIMPAN KE FILE (Vercel read-only)
 
     return cards
 
 
+# =========================
+# USER (IN-MEMORY)
+# =========================
 def load_user():
-    if not os.path.exists(USER_FILE):
-        with open(USER_FILE, 'w', encoding='utf-8') as f:
-            json.dump({'coins': 900000, 'owned': [], 'tickets': 0}, f)
-    with open(USER_FILE, 'r', encoding='utf-8') as f:
-        user = json.load(f)
-    # ensure tickets key exists for older users
-    if 'tickets' not in user:
-        user['tickets'] = 0
-        with open(USER_FILE, 'w', encoding='utf-8') as f:
-            json.dump(user, f, indent=2)
-    return user
+    return USER_CACHE
 
 
 def save_user(user):
-    try:
-        with open(USER_FILE, 'w', encoding='utf-8') as f:
-            json.dump(user, f, indent=2)
-    except Exception as e:
-        app.logger.exception("Failed to save user data")
-        raise
+    global USER_CACHE
+    USER_CACHE = user
 
 
 def choose_rarity(pulls=1):
