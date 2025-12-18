@@ -6,7 +6,7 @@
       {% for rarity, info in boxes.items() %}
         <div class="box">
           <h3>{{ info.label }}</h3>
-          <p>Cost: <span class="ticket-price">{{ info.cost }} <img class="currency-icon ticket" src="https://gpng.net/wp-content/uploads/2020/10/ticket-png-template-free-png-images-2-pngandscrap.png" alt="ticket"></span></p>
+          <p>Cost: <span class="ticket-price">{{ info.cost }} <img class="currency-icon ticket" src="https://static.vecteezy.com/system/resources/previews/012/627/830/non_2x/3d-cinema-ticket-realistic-trendy-design-concept-of-traveling-booking-service-movie-or-shopping-sale-coupon-high-quality-isolated-3d-render-png.png" alt="ticket"></span></p>
           <button class="buyBox" data-rarity="{{ rarity }}" data-cost="{{ info.cost }}">Beli</button>
         </div>
       {% endfor %}
