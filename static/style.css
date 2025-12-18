@@ -128,7 +128,7 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 .topbar{display:flex;align-items:center;gap:16px;padding:12px 20px;background:rgba(0,0,0,0.12);position:fixed;top:0;left:0;right:0;height:var(--topbar-height);z-index:1000;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(0,0,0,0.45)}
 .topbar .brand{display:flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer}
 .topbar .brand:hover{opacity:0.8}
-.topbar .logo{height:32px;width:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,0.85));}
+.topbar .logo{height:calc(var(--topbar-height) - 20px);width:auto;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,0.85));}
 .topbar h1{margin:0;font-size:20px;color:var(--accent);text-shadow:0 2px 6px rgba(0,0,0,0.85)}
 .topbar nav a{color:var(--accent);margin-right:8px;text-decoration:none}
 .account{margin-left:auto;display:flex;gap:12px;align-items:center}
@@ -672,7 +672,7 @@ button{background:var(--accent);color:#321604;border:none;padding:8px 12px;borde
   :root{--topbar-height:64px}
   .topbar{padding:10px 14px;height:var(--topbar-height);gap:8px}
   .topbar .brand h1{font-size:16px}
-  .topbar .logo{height:28px;width:28px}
+  .topbar .logo{height:calc(var(--topbar-height) - 20px);width:auto}
   .account{gap:8px}
 
   .container{padding:14px;padding-top:calc(var(--topbar-height) + 12px)}
