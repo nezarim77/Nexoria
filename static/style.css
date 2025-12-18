@@ -129,6 +129,10 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 .topbar .brand{display:flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer}
 .topbar .brand:hover{opacity:0.8}
 .topbar .logo{height:calc(var(--topbar-height) - 20px);width:auto;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,0.85));}
+
+.currency-icon{height:1em;vertical-align:middle;margin-left:6px}
+.currency-icon.coin{height:1.1em}
+.currency-icon.ticket{height:1.05em}
 .topbar h1{margin:0;font-size:20px;color:var(--accent);text-shadow:0 2px 6px rgba(0,0,0,0.85)}
 .topbar nav a{color:var(--accent);margin-right:8px;text-decoration:none}
 .account{margin-left:auto;display:flex;gap:12px;align-items:center}

@@ -21,14 +21,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
 
+  const COIN_IMG = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd9b85bb-f709-41fb-8666-da35e37527e0/ddj39zb-3b4362e1-1f54-4aae-95ba-50fb7f6127d5.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9jZDliODViYi1mNzA5LTQxZmItODY2Ni1kYTM1ZTM3NTI3ZTAvZGRqMzl6Yi0zYjQzNjJlMS0xZjU0LTRhYWUtOTViYS01MGZiN2Y2MTI3ZDUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.sBkYEkdbznOgmxGjN0Tkt1EebgRfRIJlHCUoNp_gvb0'
+  const TICKET_IMG = 'https://gpng.net/wp-content/uploads/2020/10/ticket-png-template-free-png-images-2-pngandscrap.png'
+
   function updateCoins(n){
     const el = document.getElementById('coins')
-    if(el) el.textContent = n
+    if(el) el.innerHTML = `${n} <img class="currency-icon coin" src="${COIN_IMG}" alt="coin">`
   }
 
   function updateTickets(n){
     const el = document.getElementById('tickets')
-    if(el) el.textContent = n
+    if(el) el.innerHTML = `${n} <img class="currency-icon ticket" src="${TICKET_IMG}" alt="ticket">`
   }
 
   function updateBuyButtons(){
