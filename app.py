@@ -135,12 +135,12 @@ def choose_rarity(pulls=1):
     probs = [
         ('D', 0),
         ('C', 0),
-        ('B', 50),
+        ('B', 60),
         ('A', 20),
-        ('S', 1),
-        ('SS', 0.1),
-        ('SSS', 0.01),
-        ('UR', 0.001),
+        ('S', 5),
+        ('SS', 1),
+        ('SSS', 0.1),
+        ('UR', 0.01),
     ]
     labels = [r for r, _ in probs]
     weights = [w for _, w in probs]
