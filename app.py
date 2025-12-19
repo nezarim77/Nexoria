@@ -5,15 +5,7 @@ import os
 
 BASE_DIR = os.path.dirname(__file__)
 CARDS_FILE = os.path.join(BASE_DIR, 'cards.json')
-
-# ======================================================
-# USER DATA (IN-MEMORY ONLY — VERCEL SAFE)
-# ======================================================
-USER_CACHE = {
-    "coins": 100000,
-    "owned": [],
-    "tickets": 0
-}
+USER_FILE = os.path.join(BASE_DIR, 'user_data.json')
 
 app = Flask(__name__)
 
@@ -85,14 +77,20 @@ def load_cards():
     return cards
 
 # ======================================================
-# USER (IN MEMORY)
+# USER (FILE BASED)
 # ======================================================
 def load_user():
-    return USER_CACHE
+    if not os.path.exists(USER_FILE):
+        initial_user = {"coins": 100000, "owned": [], "tickets": 0}
+        with open(USER_FILE, 'w', encoding='utf-8') as f:
+            json.dump(initial_user, f, indent=2)
+        return initial_user
+    with open(USER_FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 def save_user(user):
-    global USER_CACHE
-    USER_CACHE = user
+    with open(USER_FILE, 'w', encoding='utf-8') as f:
+        json.dump(user, f, indent=2)
 
 # ======================================================
 # GACHA LOGIC
