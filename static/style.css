@@ -247,7 +247,7 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 
 /* Flip card animation */
 .flip-card{perspective:1200px}
-.flip-card .card-inner{position:relative;width:100%;height:100%;transition:transform0.8s;transform-style:preserve-3d}
+.flip-card .card-inner{position:relative;width:100%;height:100%;transition:transform 0.8s;transform-style:preserve-3d}
 .flip-card .card-front, .flip-card .card-back{position:absolute;top:0;left:0;width:100%;height:100%;backface-visibility:hidden}
 .flip-card .card-back{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#0d151f,#01121a);color:var(--muted);font-size:18px}
 .flip-card .card-front{transform:rotateY(180deg)}
