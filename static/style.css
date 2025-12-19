@@ -720,8 +720,8 @@ button{background:var(--accent);color:#321604;border:none;padding:8px 12px;borde
   .gacha-results{grid-template-columns:repeat(2,1fr);gap:10px}
   .gacha-results .card{min-height:220px}
 
-  /* Deck groups -> single column for deck listing */
-  .group-cards{grid-template-columns:repeat(1,1fr);gap:10px}
+  /* Deck groups -> keep two columns on small phones for better layout */
+  .group-cards{grid-template-columns:repeat(2,minmax(120px,1fr));gap:10px}
 
   /* Make overlays align to bottom so content is reachable */
   .modal-overlay, .shop-overlay{align-items:flex-end;padding-bottom:20px}
