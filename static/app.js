@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
   ========================= */
   function getBoxImageByRarity(rarity){
     const map = {
-      'A':  '/static/public/box/a-box.png',
-      'B':  '/static/public/box/b-box.png',
-      'S':  '/static/public/box/s-box.png',
-      'SS': '/static/public/box/ss-box.png'
+      'A':  'https://kageherostudio.com/assets/filemanager/source/event/Class-A%20Gear%20Box.png',
+      'B':  'https://kageherostudio.com/assets/filemanager/source/event/Stamina%20Bag.png',
+      'S':  'https://kageherostudio.com/assets/filemanager/source/event/Class-S%20Gear%20Box.png',
+      'SS': 'https://kageherostudio.com/assets/filemanager/source/event/Class-SS%20Gear%20Box.png',
+      'SSS': 'https://kageherostudio.com/assets/filemanager/source/event/Class-SSS%20Gear%20Box.png',
+      'UR': 'https://kageherostudio.com/assets/filemanager/source/event/Class-UR%20Gear%20Box.png'
     }
 
     return map[rarity] || '/static/public/box/a-box.png'
