@@ -80,17 +80,27 @@ def load_cards():
 # USER (FILE BASED)
 # ======================================================
 def load_user():
-    if not os.path.exists(USER_FILE):
-        initial_user = {"coins": 100000, "owned": [], "tickets": 0}
-        with open(USER_FILE, 'w', encoding='utf-8') as f:
-            json.dump(initial_user, f, indent=2)
-        return initial_user
-    with open(USER_FILE, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        if not os.path.exists(USER_FILE):
+            initial_user = {"coins": 100000, "owned": [], "tickets": 0}
+            try:
+                with open(USER_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(initial_user, f, indent=2)
+            except Exception as e:
+                app.logger.warning('Could not write initial user_data.json: %s; using in-memory copy', e)
+            return initial_user
+        with open(USER_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        app.logger.exception('Failed to load user data; returning default')
+        return {"coins": 100000, "owned": [], "tickets": 0}
 
 def save_user(user):
-    with open(USER_FILE, 'w', encoding='utf-8') as f:
-        json.dump(user, f, indent=2)
+    try:
+        with open(USER_FILE, 'w', encoding='utf-8') as f:
+            json.dump(user, f, indent=2)
+    except Exception as e:
+        app.logger.warning('Could not save user_data.json: %s', e)
 
 # ======================================================
 # GACHA LOGIC
