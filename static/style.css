@@ -334,13 +334,14 @@ button{background:var(--accent);color:#321604;border:none;padding:8px 12px;borde
 .lobby{display:flex;flex-direction:column;align-items:center;gap:24px}
 .lobby-hero{width:100%;display:flex;justify-content:center}
 .lobby-image{
-  max-width:260px;   /* ← dari 350 */
+  max-width:300px;   /* ← dari 350 */
   width:80%;         /* ← dari 80% */
   height:auto;
   border-radius:18px;
   box-shadow:0 10px 32px rgba(0,0,0,0.45);
   filter: drop-shadow(0 12px 30px rgba(0,0,0,0.6));
   animation: floatHero 6s ease-in-out infinite;
+  border:5px solid rgba(255,255,255,0.03);
 }
 
 .lobby-menu{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
