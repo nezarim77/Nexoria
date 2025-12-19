@@ -10,6 +10,27 @@ USER_FILE = os.path.join(BASE_DIR, 'user_data.json')
 app = Flask(__name__)
 
 # ======================================================
+# USER DATA (HYBRID: IN-MEMORY + FILE)
+# ======================================================
+# On Vercel (read-only FS), the in-memory cache persists within the same execution context.
+# Try to load from file on startup; persist to file if possible; use memory as backup.
+USER_CACHE = None
+
+def init_user_cache():
+    """Load user data from file (if it exists) into memory on startup."""
+    global USER_CACHE
+    default_user = {"coins": 100000, "owned": [], "tickets": 0}
+    try:
+        if os.path.exists(USER_FILE):
+            with open(USER_FILE, 'r', encoding='utf-8') as f:
+                USER_CACHE = json.load(f)
+                app.logger.info('Loaded user data from file')
+                return
+    except Exception as e:
+        app.logger.warning('Could not load user_data.json: %s', e)
+    USER_CACHE = default_user.copy()
+
+# ======================================================
 # CONSTANTS
 # ======================================================
 
@@ -80,27 +101,22 @@ def load_cards():
 # USER (FILE BASED)
 # ======================================================
 def load_user():
-    try:
-        if not os.path.exists(USER_FILE):
-            initial_user = {"coins": 100000, "owned": [], "tickets": 0}
-            try:
-                with open(USER_FILE, 'w', encoding='utf-8') as f:
-                    json.dump(initial_user, f, indent=2)
-            except Exception as e:
-                app.logger.warning('Could not write initial user_data.json: %s; using in-memory copy', e)
-            return initial_user
-        with open(USER_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        app.logger.exception('Failed to load user data; returning default')
-        return {"coins": 100000, "owned": [], "tickets": 0}
+    """Return the in-memory user cache (which was initialized from file on startup)."""
+    global USER_CACHE
+    if USER_CACHE is None:
+        init_user_cache()
+    return USER_CACHE
 
 def save_user(user):
+    """Update in-memory cache and try to persist to file (best-effort on read-only FS)."""
+    global USER_CACHE
+    USER_CACHE = user
     try:
         with open(USER_FILE, 'w', encoding='utf-8') as f:
             json.dump(user, f, indent=2)
+        app.logger.info('Saved user data to file')
     except Exception as e:
-        app.logger.warning('Could not save user_data.json: %s', e)
+        app.logger.warning('Could not save user_data.json (likely read-only FS): %s; using in-memory cache', e)
 
 # ======================================================
 # GACHA LOGIC
@@ -290,6 +306,9 @@ def debug_fs():
         "cards_json_exists": os.path.exists(CARDS_FILE),
         "user_cache": USER_CACHE
     })
+
+# Initialize user cache on app startup
+init_user_cache()
 
 if __name__ == '__main__':
     app.run(debug=True)
