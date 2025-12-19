@@ -32,670 +32,670 @@
     "name": "Roronoa Zoro",
     "rarity": "UR",
     "desc": "One Piece",
-    "image": "static/public/cards/ur/ur-zoro.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/3/100534.jpg"
   },
   {
     "id": 6,
     "name": "Zoldyck Killua",
     "rarity": "UR",
     "desc": "Hunter x Hunter",
-    "image": "static/public/cards/ur/ur-killua.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/2/327920.jpg"
   },
   {
     "id": 7,
     "name": "Light Yagami",
     "rarity": "UR",
     "desc": "Death Note",
-    "image": "static/public/cards/ur/ur-light.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/6/63870.jpg"
   },
   {
     "id": 8,
     "name": "Okabe Rintarou",
     "rarity": "UR",
     "desc": "Steins;Gate",
-    "image": "static/public/cards/ur/ur-okabe.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/11/241541.jpg"
   },
   {
     "id": 9,
     "name": "Edward Elric",
     "rarity": "UR",
     "desc": "Fullmetal Alchemist",
-    "image": "static/public/cards/ur/ur-edward.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/9/72533.jpg"
   },
   {
     "id": 10,
     "name": "Uzumaki Naruto",
     "rarity": "UR",
     "desc": "Naruto",
-    "image": "static/public/cards/ur/ur-naruto.jpg"
+    "image": "https://cdn.myanimelist.net/images/characters/2/284121.jpg"
   },{
   "id": 11,
   "name": "Guts",
   "rarity": "SSS",
   "desc": "Berserk",
-  "image": "static/public/cards/sss/sss-guts.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/13/284125.jpg"
 },
 {
   "id": 12,
   "name": "Sakata Gintoki",
   "rarity": "SSS",
   "desc": "Gintama",
-  "image": "static/public/cards/sss/sss-gintoki.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/241479.jpg"
 },
 {
   "id": 13,
   "name": "Eren Yeager",
   "rarity": "SSS",
   "desc": "Attack on Titan",
-  "image": "static/public/cards/sss/sss-eren.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/10/216895.jpg"
 },
 {
   "id": 14,
   "name": "Makise Kurisu",
   "rarity": "SSS",
   "desc": "Steins;Gate",
-  "image": "static/public/cards/sss/sss-kurisu.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/12/492885.jpg"
 },
 {
   "id": 15,
   "name": "Uchiha Itachi",
   "rarity": "SSS",
   "desc": "Naruto",
-  "image": "static/public/cards/sss/sss-itachi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/284122.jpg"
 },
 {
   "id": 16,
   "name": "Gojou Satoru",
   "rarity": "SSS",
   "desc": "Jujutsu Kaisen",
-  "image": "static/public/cards/sss/sss-gojou.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/422168.jpg"
 },
 {
   "id": 17,
   "name": "Mikasa Ackerman",
   "rarity": "SSS",
   "desc": "Attack on Titan",
-  "image": "static/public/cards/sss/sss-mikasa.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/215563.jpg"
 },
 {
   "id": 18,
   "name": "Kaneki Ken",
   "rarity": "SSS",
   "desc": "Tokyo Ghoul",
-  "image": "static/public/cards/sss/sss-kaneki.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/4/328538.jpg"
 },
 {
   "id": 19,
   "name": "Hikigaya Hachiman",
   "rarity": "SSS",
   "desc": "Oregairu",
-  "image": "static/public/cards/sss/sss-hachiman.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/175937.jpg"
 },
 {
   "id": 20,
   "name": "Hatake Kakashi",
   "rarity": "SSS",
   "desc": "Naruto",
-  "image": "static/public/cards/sss/sss-kakashi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/284129.jpg"
 },
 {
   "id": 21,
   "name": "Spike Spiegel",
   "rarity": "SSS",
   "desc": "Cowboy Bebop",
-  "image": "static/public/cards/sss/sss-spike.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/11/516853.jpg"
 },
 {
   "id": 22,
   "name": "Saitama",
   "rarity": "SSS",
   "desc": "One Punch Man",
-  "image": "static/public/cards/sss/sss-saitama.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/11/294388.jpg"
 },
 {
   "id": 23,
   "name": "Rem",
   "rarity": "SSS",
   "desc": "Re:Zero",
-  "image": "static/public/cards/sss/sss-rem.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/311327.jpg"
 },
 {
   "id": 24,
   "name": "Joseph Joestar",
   "rarity": "SSS",
   "desc": "Jojo's Bizarre Adventure",
-  "image": "static/public/cards/sss/sss-joseph.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/316615.jpg"
 },
 {
   "id": 24,
   "name": "Sakurajima Mai",
   "rarity": "SSS",
   "desc": "Seishun Buta Yarou",
-  "image": "static/public/cards/sss/sss-mai.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/2/366639.jpg"
 },
 {
   "id": 25,
   "name": "Megumin",
   "rarity": "SSS",
   "desc": "KonoSuba",
-  "image": "static/public/cards/sss/sss-megumin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/349249.jpg"
 },
 {
   "id": 26,
   "name": "Arataka Reigen",
   "rarity": "SSS",
   "desc": "Mob Psycho 100",
-  "image": "static/public/cards/sss/sss-reigen.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/308364.jpg"
 },
 {
   "id": 27,
   "name": "Senjougahara Hitagi",
   "rarity": "SSS",
   "desc": "Monogatari Series",
-  "image": "static/public/cards/sss/sss-senjougahara.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/299586.jpg"
 },
 {
   "id": 29,
   "name": "Kirigaya Kazuto",
   "rarity": "SSS",
   "desc": "Sword Art Online",
-  "image": "static/public/cards/sss/sss-kirito.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/204821.jpg"
 },
 {
   "id": 30,
   "name": "Yato",
   "rarity": "SSS",
   "desc": "Noragami",
-  "image": "static/public/cards/sss/sss-yato.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/328158.jpg"
 },
 {
   "id": 31,
   "name": "Roy Mustang",
   "rarity": "SS",
   "desc": "Fullmetal Alchemist",
-  "image": "static/public/cards/SS/ss-Roy.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/11/510227.jpg"
 },
 {
   "id": 32,
   "name": "Violet Evergarden",
   "rarity": "SS",
   "desc": "Violet Evergarden",
-  "image": "static/public/cards/SS/ss-violet.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/345616.jpg"
 },
 {
   "id": 33,
   "name": "Zero Two",
   "rarity": "SS",
   "desc": "Darling in the Franxx",
-  "image": "static/public/cards/ss/ss-002.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/559013.jpg"
 },
 {
   "id": 34,
   "name": "Ayanokouji Kiyotaka",
   "rarity": "SS",
   "desc": "Classroom of the Elite",
-  "image": "static/public/cards/ss/ss-ayanokouji.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/4/539058.jpg"
 },
 {
   "id": 35,
   "name": "Dazai Osamu",
   "rarity": "SS",
   "desc": "Bungou Stray Dogs",
-  "image": "static/public/cards/ss/ss-dazai.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/13/311296.jpg"
 },
 {
   "id": 36,
   "name": "Kurosaki Ichigo",
   "rarity": "SS",
   "desc": "Bleach",
-  "image": "static/public/cards/ss/ss-ichigo.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/512788.jpg"
 },
 {
   "id": 37,
   "name": "Hisoka Morow",
   "rarity": "SS",
   "desc": "Hunter x Hunter",
-  "image": "static/public/cards/ss/ss-hisoka.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/174561.jpg"
 },
 {
   "id": 38,
   "name": "Kamina",
   "rarity": "SS",
   "desc": "Tegen Toppa Gurren Lagann",
-  "image": "static/public/cards/ss/ss-kamina.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/83946.jpg"
 },
 {
   "id": 39,
   "name": "Thorfinn",
   "rarity": "SS",
   "desc": "Vinland Saga",
-  "image": "static/public/cards/SS/ss-thorfinn.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/309871.jpg"
 },
 {
   "id": 40,
   "name": "Onizuka Eikichi",
   "rarity": "SS",
   "desc": "Great Teacher Onizuka",
-  "image": "static/public/cards/SS/ss-Onizuka Eikichi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/241475.jpg"
 },
 {
   "id": 41,
   "name": "Oshino Shinobu",
   "rarity": "SS",
   "desc": "Monogatari Series",
-  "image": "static/public/cards/SS/ss-shinobu oshino.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/234167.jpg"
 },
 {
   "id": 42,
   "name": "Saber",
   "rarity": "SS",
   "desc": "Fate: Stay Night",
-  "image": "static/public/cards/SS/SS-Saber.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/6/275276.jpg"
 },
 {
   "id": 43,
   "name": "Sanji",
   "rarity": "SS",
   "desc": "One Piece",
-  "image": "static/public/cards/SS/ss-Sanji.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/366019.jpg"
 },
 {
   "id": 44,
   "name": "Aisaka Taiga",
   "rarity": "SS",
   "desc": "Toradora!",
-  "image": "static/public/cards/SS/ss-taiga.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/11/514086.jpg"
 },
 {
   "id": 45,
   "name": "Araragi Koyomi",
   "rarity": "SS",
   "desc": "Monogatari Series",
-  "image": "static/public/cards/ss/ss-araragi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/559456.jpg"
 },
 {
   "id": 46,
   "name": "Son Goku",
   "rarity": "SS",
   "desc": "Dragon Ball",
-  "image": "static/public/cards/ss/ss-gokuu.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/72546.jpg"
 },
 {
   "id": 47,
   "name": "Asuka Langley Soryu",
   "rarity": "SS",
   "desc": "Evangelion",
-  "image": "static/public/cards/ss/ss-asuka.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/12/79465.jpg"
 },
 {
   "id": 48,
   "name": "Uchiha Sasuke",
   "rarity": "SS",
   "desc": "Naruto",
-  "image": "static/public/cards/SS/ss-sasuke.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/131317.jpg"
 },
 {
   "id": 49,
   "name": "Yuuki Asuna",
   "rarity": "SS",
   "desc": "Sword Art Online",
-  "image": "static/public/cards/SS/ss-asuna.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/262053.jpg"
 },
 {
   "id": 50,
   "name": "Askeladd",
   "rarity": "SS",
   "desc": "Vinland Saga",
-  "image": "static/public/cards/ss/ss-askeladd.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/401940.jpg"
 },
 {
   "id": 51,
   "name": "Yuno Gasai",
   "rarity": "SS",
   "desc": "Mirai Nikki",
-  "image": "static/public/cards/SS/ss-yuno gasai.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/5/280576.jpg"
 },
 {
   "id": 52,
   "name": "Alucard",
   "rarity": "SS",
   "desc": "Hellsing",
-  "image": "static/public/cards/ss/ss-alucard.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/74607.jpg"
 },
 {
   "id": 53,
   "name": "Holo",
   "rarity": "SS",
   "desc": "Spice and Wolf",
-  "image": "static/public/cards/ss/ss-holo.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/319492.jpg"
 },
 {
   "id": 54,
   "name": "Erwin Smith",
   "rarity": "SS",
   "desc": "Attack on Titan",
-  "image": "static/public/cards/ss/ss-erwin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/559023.jpg"
 },
 {
   "id": 55,
   "name": "Frieren",
   "rarity": "SS",
   "desc": "Frieren: Beyond Journey's End",
-  "image": "static/public/cards/ss/ss-frieren.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/525105.jpg"
 },
 {
   "id": 56,
   "name": "C.C.",
   "rarity": "SS",
   "desc": "Code Geass",
-  "image": "static/public/cards/ss/ss-cc.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/13/33815.jpg"
 },
 {
   "id": 57,
   "name": "Johan Liebert",
   "rarity": "SS",
   "desc": "Monster",
-  "image": "static/public/cards/ss/ss-johan.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/4/316522.jpg"
 },
 {
   "id": 58,
   "name": "Kageyama Shigeo",
   "rarity": "SS",
   "desc": "Mob Psycho 100",
-  "image": "static/public/cards/ss/ss-mob.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/6/343344.jpg"
 },
 {
   "id": 59,
   "name": "Kuujou Jotaro",
   "rarity": "SS",
   "desc": "Jojo's Bizarre Adventure",
-  "image": "static/public/cards/ss/ss-jotaro.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/312302.jpg"
 },
 {
   "id": 60,
   "name": "Akemi Homura",
   "rarity": "SS",
   "desc": "Mahou Shoujo Madoka Magica",
-  "image": "static/public/cards/ss/ss-homura.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/526748.jpg"
 },{
   "id": 61,
   "name": "Shinomiya Kaguya",
   "rarity": "S",
   "desc": "Kaguya-sama: Love is War",
-  "image": "static/public/cards/s/s-kaguya.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/2/504723.jpg"
 },
 {
   "id": 62,
   "name": "Midoriya Izuku",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "static/public/cards/s/s-deku.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/355122.jpg"
 },
 {
   "id": 63,
   "name": "Kurapika",
   "rarity": "S",
   "desc": "Hunter x Hunter",
-  "image": "static/public/cards/s/s-kurapika.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/549312.jpg"
 },
 {
   "id": 64,
   "name": "Todoroki Shouto",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "static/public/cards/s/s-shoto.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/383744.jpg"
 },
 {
   "id": 65,
   "name": "Miyazono Kaori",
   "rarity": "S",
   "desc": "Your Lie in April",
-  "image": "static/public/cards/s/s-kaori.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/269375.jpg"
 },
 {
   "id": 66,
   "name": "Kitagawa Marin",
   "rarity": "S",
   "desc": "My Dress-Up Darling",
-  "image": "static/public/cards/s/s-marin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/470522.jpg"
 },
 {
   "id": 67,
   "name": "Tohsaka Rin",
   "rarity": "S",
   "desc": "Fate: Stay Night",
-  "image": "static/public/cards/s/s-rin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/2/270529.jpg"
 },
 {
   "id": 68,
   "name": "Kamado Tanjirou",
   "rarity": "S",
   "desc": "Demon Slayer",
-  "image": "static/public/cards/s/s-tanjiro.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/6/386735.jpg"
 },
 {
   "id": 69,
   "name": "Saiki Kusuo",
   "rarity": "S",
   "desc": "Saiki Kusuo no Psi-nan",
-  "image": "static/public/cards/s/s-saiki.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/12/337932.jpg"
 },
 {
   "id": 70,
   "name": "Natsuki Subaru",
   "rarity": "S",
   "desc": "Re:Zero",
-  "image": "static/public/cards/s/s-subaru.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/481946.jpg"
 },
 {
   "id": 71,
   "name": "Rimuru Tempest",
   "rarity": "S",
   "desc": "Tensei Shitara Slime Datta Ken",
-  "image": "static/public/cards/s/s-rimuru.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/5/495796.jpg"
 },
 {
   "id": 72,
   "name": "Ishigami Senkuu",
   "rarity": "S",
   "desc": "Dr. Stone",
-  "image": "static/public/cards/s/s-senkuu.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/12/388502.jpg"
 },
 {
   "id": 73,
   "name": "Bakugo Katsuki",
   "rarity": "S",
   "desc": "My Hero Academia",
-  "image": "static/public/cards/s/s-bakugo.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/443012.jpg"
 },
 {
   "id": 74,
   "name": "Emilia",
   "rarity": "S",
   "desc": "Re:Zero",
-  "image": "static/public/cards/s/s-emilia.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/13/306389.jpg"
 },
 {
   "id": 75,
   "name": "Yukinoshita Yukino",
   "rarity": "S",
   "desc": "Oregairu",
-  "image": "static/public/cards/s/s-yukinon.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/4/202721.jpg"
 },
 {
   "id": 76,
   "name": "Nico Robin",
   "rarity": "S",
   "desc": "One Piece",
-  "image": "static/public/cards/s/s-robin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/363700.jpg"
 },
 {
   "id": 77,
   "name": "Oreki Houtarou",
   "rarity": "S",
   "desc": "Hyouka",
-  "image": "static/public/cards/s/s-oreki.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/308148.jpg"
 },
 {
   "id": 78,
   "name": "Izaya Orihara",
   "rarity": "S",
   "desc": "Durarara!!",
-  "image": "static/public/cards/s/s-izaya.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/12/313152.jpg"
 },
 {
   "id": 79,
   "name": "Tokisaki Kurumi",
   "rarity": "S",
   "desc": "Date A Live",
-  "image": "static/public/cards/s/s-kurumi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/310255.jpg"
 },
 {
   "id": 80,
   "name": "Revy",
   "rarity": "S",
   "desc": "Black Lagoon",
-  "image": "static/public/cards/s/s-revy.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/10/78871.jpg"
 },
 {
   "id": 81,
   "name": "Power",
   "rarity": "S",
   "desc": "Chainsaw Man",
-  "image": "static/public/cards/s/s-power.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/494969.jpg"
 },
 {
   "id": 82,
   "name": "Sebastian Michaelis",
   "rarity": "S",
   "desc": "Black Butler",
-  "image": "static/public/cards/s/s-sebastian.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/6/44160.jpg"
 },
 {
   "id": 83,
   "name": "Gon Freecss",
   "rarity": "S",
   "desc": "Hunter x Hunter",
-  "image": "static/public/cards/s/s-gon.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/11/174517.jpg"
 },
 {
   "id": 84,
   "name": "Natsu Dragneel",
   "rarity": "S",
   "desc": "Fairy Tail",
-  "image": "static/public/cards/s/s-natsu.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/376565.jpg"
 },
 {
   "id": 85,
   "name": "Nakano Miku",
   "rarity": "S",
   "desc": "Quintessential Quintuplets",
-  "image": "static/public/cards/s/s-miku.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/360123.jpg"
 },
 {
   "id": 86,
   "name": "Ishigami Yuu",
   "rarity": "S",
   "desc": "Kaguya-sama: Love is War",
-  "image": "static/public/cards/s/s-ishigami.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/372840.jpg"
 },
 {
   "id": 87,
   "name": "Trafalgar Law",
   "rarity": "S",
   "desc": "One Piece",
-  "image": "static/public/cards/s/s-law.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/10/258757.jpg"
 },
 {
   "id": 88,
   "name": "Denji",
   "rarity": "S",
   "desc": "Chainsaw Man",
-  "image": "static/public/cards/s/s-denji.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/3/492407.jpg"
 },
 {
   "id": 89,
   "name": "Armin Arlert",
   "rarity": "S",
   "desc": "Attack on Titan",
-  "image": "static/public/cards/s/s-armin.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/220267.jpg"
 },
 {
   "id": 90,
   "name": "Ayanami Rei",
   "rarity": "S",
   "desc": "Evangelion",
-  "image": "static/public/cards/s/s-rei.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/311894.jpg"
 },
 {
   "id": 91,
   "name": "Vegeta",
   "rarity": "S",
   "desc": "Dragon Ball",
-  "image": "static/public/cards/s/s-vegeta.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/14/86185.jpg"
 },
 {
   "id": 92,
   "name": "Satou Kazuma",
   "rarity": "S",
   "desc": "KonoSuba",
-  "image": "static/public/cards/s/s-kazuma.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/8/301302.jpg"
 },
 {
   "id": 93,
   "name": "Maomao",
   "rarity": "S",
   "desc": "Kusuriya no Hitorigoto",
-  "image": "static/public/cards/s/s-maomao.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/16/371204.jpg"
 },
 {
   "id": 94,
   "name": "Ikari Shinji",
   "rarity": "S",
   "desc": "Evangelion",
-  "image": "static/public/cards/s/s-shinji.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/5/225177.jpg"
 },
 {
   "id": 95,
   "name": "Hange Zoë",
   "rarity": "S",
   "desc": "Attack on Titan",
-  "image": "static/public/cards/s/s-hange.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/15/208637.jpg"
 },
 {
   "id": 96,
   "name": "Koro-sensei",
   "rarity": "S",
   "desc": "Assassination Classroom",
-  "image": "static/public/cards/s/s-koro.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/277325.jpg"
 },
 {
   "id": 97,
   "name": "Rias Gremory",
   "rarity": "S",
   "desc": "Highschool DxD",
-  "image": "static/public/cards/s/s-rias.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/5/150011.jpg"
 },
 {
   "id": 98,
   "name": "Musashi Miyamoto",
   "rarity": "S",
   "desc": "Vagabond",
-  "image": "static/public/cards/s/s-musashi.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/9/557004.jpg"
 },
 {
   "id": 99,
   "name": "Takanashi Rikka",
   "rarity": "S",
   "desc": "Chuunibyou demo Koi ga Shitai!",
-  "image": "static/public/cards/s/s-rikka.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/2/257273.jpg"
 },
 {
   "id": 100,
   "name": "Hinata Shoyou",
   "rarity": "S",
   "desc": "Haikyuu",
-  "image": "static/public/cards/s/s-hinataS.jpg"
+  "image": "https://cdn.myanimelist.net/images/characters/7/254023.jpg"
 },
 {
   "id": 101,

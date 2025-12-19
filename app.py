@@ -248,11 +248,22 @@ def buy():
 
 @app.route('/reset', methods=['POST'])
 def reset():
-    save_user({
+    # require explicit JSON confirmation to avoid accidental resets
+    data = request.get_json(silent=True) or {}
+    app.logger.info('Reset called: remote=%s referrer=%s user_agent=%s data=%s', request.remote_addr, request.referrer, request.headers.get('User-Agent'), data)
+    if data.get('confirm') is not True:
+        return jsonify({'ok': False, 'error': 'Missing confirmation'}), 400
+
+    user = {
         "coins": 100000,
         "owned": [],
         "tickets": 0
-    })
+    }
+    try:
+        save_user(user)
+    except Exception as e:
+        app.logger.exception("Failed to reset user data")
+        return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
     return jsonify({'ok': True})
 
 # ======================================================

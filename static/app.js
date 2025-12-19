@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       actions: [
         { label:'Batal', class:'btn-secondary' },
         { label:'Reset', class:'btn-danger', onClick: async ()=>{
-            const res = await fetch('/reset',{method:'POST'})
+            const res = await fetch('/reset',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({confirm:true})})
             let j = {ok:false, error:'No response'}
             const ct = res.headers.get('content-type') || ''
             if(ct.includes('application/json')){
