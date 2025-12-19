@@ -223,7 +223,12 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
   .pity-item > div:first-child{display:flex;justify-content:space-between;align-items:center;font-size:0.95rem}
   .pity-bar{height:12px}
   .pity-progress{height:100%}
+
+  /* SHOP: 2 boxes per row on mobile and cap visible rows to 4 */
+  .shop-boxes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-height:calc((140px + 12px) * 4);overflow-y:auto;grid-auto-rows:minmax(140px,auto);padding-right:6px}
+  .shop-boxes .box{width:100%}
 }
+
 
 .deck-groups{display:flex;flex-direction:column;gap:28px}
 .rarity-group{padding:6px 0}
