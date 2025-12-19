@@ -298,7 +298,7 @@ def pull():
     if obtained_sss:
         user['pity_sss'] = 0
     else:
-        user['pity_sss'] = min(100, user.get('pity_sss', 0) + count)
+        user['pity_sss'] = min(200, user.get('pity_sss', 0) + count)
 
     if obtained_ur:
         user['pity_ur'] = 0
