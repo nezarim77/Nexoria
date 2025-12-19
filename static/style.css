@@ -214,6 +214,17 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 .pity-bar{height:10px;background:rgba(255,255,255,0.08);border-radius:6px;margin-top:6px;overflow:hidden}
 .pity-progress{height:100%;background:linear-gradient(90deg,#ff6fa7,#ffb6c9);width:0%}
 .pity-item .pity-max{color:#ffd966;font-weight:700;margin-left:8px}
+
+/* Responsive: stack pity bars vertically on small screens (SSS above UR) */
+@media (max-width: 640px){
+  .pity-info{flex-direction:column;align-items:stretch;gap:10px}
+  .pity-info .pity-item{min-width:unset;width:100%}
+  /* make the label area space-between so the counter and message align nicely */
+  .pity-item > div:first-child{display:flex;justify-content:space-between;align-items:center;font-size:0.95rem}
+  .pity-bar{height:12px}
+  .pity-progress{height:100%}
+}
+
 .deck-groups{display:flex;flex-direction:column;gap:28px}
 .rarity-group{padding:6px 0}
 .rarity-header{font-weight:900;font-size:1.05rem;margin:6px 12px;color:#fff;text-transform:uppercase;letter-spacing:1px}
