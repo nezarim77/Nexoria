@@ -9,6 +9,18 @@
     <div class="gacha-controls center">
       <button id="pull10" class="gacha-pull"><span class="price"><img class="currency-icon coin" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/cd9b85bb-f709-41fb-8666-da35e37527e0/ddj39zb-3b4362e1-1f54-4aae-95ba-50fb7f6127d5.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9jZDliODViYi1mNzA5LTQxZmItODY2Ni1kYTM1ZTM3NTI3ZTAvZGRqMzl6Yi0zYjQzNjJlMS0xZjU0LTRhYWUtOTViYS01MGZiN2Y2MTI3ZDUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.sBkYEkdbznOgmxGjN0Tkt1EebgRfRIJlHCUoNp_gvb0" alt="coin"><span class="price-amount">1000</span></span></button>
     </div>
+
+    <div class="pity-info center">
+      <div class="pity-item">
+        <div><strong>SSS Pity:</strong> <span id="pitySss">{{ pity_sss }}</span> / 200 <span id="pitySssMsg"></span></div>
+        <div class="pity-bar"><div id="pitySssBar" class="pity-progress" style="width: {{ (pity_sss|int / 200.0) * 100 }}%;"></div></div>
+      </div>
+      <div class="pity-item">
+        <div><strong>UR Pity:</strong> <span id="pityUr">{{ pity_ur }}</span> / 500 <span id="pityUrMsg"></span></div>
+        <div class="pity-bar"><div id="pityUrBar" class="pity-progress" style="width: {{ (pity_ur|int / 500.0) * 100 }}%;"></div></div>
+      </div>
+    </div>
+
     <div id="resultArea" class="result-area gacha-results"></div>
   </div>
 {% endblock %}

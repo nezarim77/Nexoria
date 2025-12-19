@@ -43,6 +43,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(el) el.innerHTML = `<img class="currency-icon ticket" src="${TICKET_IMG}" alt="ticket">${n}`
   }
 
+  function updatePitySss(n){
+    const el = document.getElementById('pitySss')
+    if(el) el.textContent = n
+    const bar = document.getElementById('pitySssBar')
+    if(bar) bar.style.width = Math.min(100, (n/200)*100) + '%'
+    const msg = document.getElementById('pitySssMsg')
+    if(msg) msg.textContent = n >= 100 ? '✅ Guaranteed on next pull!' : ''
+  }
+
+  function updatePityUr(n){
+    const el = document.getElementById('pityUr')
+    if(el) el.textContent = n
+    const bar = document.getElementById('pityUrBar')
+    if(bar) bar.style.width = Math.min(100, (n/500)*100) + '%'
+    const msg = document.getElementById('pityUrMsg')
+    if(msg) msg.textContent = n >= 500 ? '✅ Guaranteed on next pull!' : ''
+  }
+
+  // initialize pity UI from server-rendered values
+  (function initPityUI(){
+    const sssEl = document.getElementById('pitySss')
+    const urEl = document.getElementById('pityUr')
+    if(sssEl){ updatePitySss(parseInt(sssEl.textContent || '0', 10)) }
+    if(urEl){ updatePityUr(parseInt(urEl.textContent || '0', 10)) }
+  })()
+
   function updateBuyButtons(){
     // ❗ TIDAK disable tombol shop lagi
     // fungsi dibiarkan agar tidak merusak fitur lama
@@ -173,6 +199,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     updateCoins(j.coins)
     if(typeof j.tickets !== 'undefined') updateTickets(j.tickets)
+
+    // update pity UI if provided
+    if(typeof j.pity_sss !== 'undefined') updatePitySss(j.pity_sss)
+    if(typeof j.pity_ur !== 'undefined') updatePityUr(j.pity_ur)
 
     resultArea.innerHTML = ''
     if(count === 1) resultArea.classList.add('single')

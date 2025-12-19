@@ -209,6 +209,11 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 .shop-result-center .card.rarity-ur::after{box-shadow:0 0 36px rgba(var(--rarity-ur1),0.36),0 0 30px rgba(var(--rarity-ur2),0.28)}
 *** End Patch
 .gacha-controls.center{display:flex;justify-content:center;margin-bottom:12px}
+.pity-info{display:flex;gap:18px;align-items:center;margin-bottom:8px}
+.pity-info .pity-item{min-width:260px;color:#fff}
+.pity-bar{height:10px;background:rgba(255,255,255,0.08);border-radius:6px;margin-top:6px;overflow:hidden}
+.pity-progress{height:100%;background:linear-gradient(90deg,#ff6fa7,#ffb6c9);width:0%}
+.pity-item .pity-max{color:#ffd966;font-weight:700;margin-left:8px}
 .deck-groups{display:flex;flex-direction:column;gap:28px}
 .rarity-group{padding:6px 0}
 .rarity-header{font-weight:900;font-size:1.05rem;margin:6px 12px;color:#fff;text-transform:uppercase;letter-spacing:1px}

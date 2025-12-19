@@ -27,8 +27,14 @@ serializer = URLSafeSerializer(app.secret_key, salt="user-data")
 DEFAULT_USER = {
     "coins": 100000,
     "owned": [],
-    "tickets": 0
+    "tickets": 0,
+    "pity_sss": 0,
+    "pity_ur": 0
 }
+
+# ensure loaded users always have pity keys (for backward compatibility)
+# we will call setdefault in get_user after loading the user
+
 
 def get_user():
     uid = request.cookies.get('uid')
@@ -37,6 +43,9 @@ def get_user():
     if uid and data:
         try:
             user = serializer.loads(data)
+            # backfill missing keys for older users
+            user.setdefault('pity_sss', 0)
+            user.setdefault('pity_ur', 0)
             return uid, user
         except Exception:
             pass
@@ -170,7 +179,9 @@ def gacha():
     resp = make_response(render_template(
         'gacha.html',
         coins=user['coins'],
-        tickets=user['tickets']
+        tickets=user['tickets'],
+        pity_sss=user.get('pity_sss', 0),
+        pity_ur=user.get('pity_ur', 0)
     ))
     return save_user_response(resp, uid, user)
 
@@ -215,9 +226,50 @@ def pull():
         return jsonify({'ok': False, 'error': 'Not enough coins'}), 400
 
     cards = load_cards()
-    results = []
 
-    for r in choose_rarity(count):
+    # Determine guaranteed rarities based on pity
+    guarantee_sss = user.get('pity_sss', 0) >= 100
+    guarantee_ur = user.get('pity_ur', 0) >= 500
+
+    guarantees = []
+    if guarantee_ur:
+        guarantees.append('UR')
+    if guarantee_sss:
+        guarantees.append('SSS')
+
+    # Helper: generate a base list of rarities
+    rarities = choose_rarity(count)
+
+    # If we have guarantees, ensure each guaranteed rarity appears at least once
+    # If we can't fit all guarantees because count is small, prioritize UR over SSS
+    needed = list(guarantees)
+    if needed:
+        # If both needed and count == 1, prefer UR
+        if len(needed) > count:
+            needed = needed[:count]
+        for g in needed:
+            if g not in rarities:
+                # try to replace a non-unique low-rarity slot
+                replaced = False
+                # prefer replacing from lowest rarities up
+                low_priorities = ['D','C','B','A','S','SS']
+                for lp in low_priorities:
+                    try:
+                        idx = rarities.index(lp)
+                        rarities[idx] = g
+                        replaced = True
+                        break
+                    except ValueError:
+                        continue
+                if not replaced:
+                    # fallback: replace random slot
+                    rarities[random.randrange(0, len(rarities))] = g
+
+    results = []
+    obtained_sss = False
+    obtained_ur = False
+
+    for r in rarities:
         card = pick_cards_by_rarity(cards, r)
         result = dict(card)
 
@@ -233,13 +285,33 @@ def pull():
 
         results.append(result)
 
+        # track obtained rarities to reset pity
+        if card['rarity'] == 'SSS':
+            obtained_sss = True
+        if card['rarity'] == 'UR':
+            obtained_ur = True
+
+    # Deduct coins after pull
     user['coins'] -= total_cost
+
+    # Update pity counters: if obtained -> reset to 0, else increase by number of pulls
+    if obtained_sss:
+        user['pity_sss'] = 0
+    else:
+        user['pity_sss'] = min(100, user.get('pity_sss', 0) + count)
+
+    if obtained_ur:
+        user['pity_ur'] = 0
+    else:
+        user['pity_ur'] = min(500, user.get('pity_ur', 0) + count)
 
     resp = jsonify({
         'ok': True,
         'results': results,
         'coins': user['coins'],
-        'tickets': user['tickets']
+        'tickets': user['tickets'],
+        'pity_sss': user.get('pity_sss', 0),
+        'pity_ur': user.get('pity_ur', 0)
     })
     return save_user_response(resp, uid, user)
 
