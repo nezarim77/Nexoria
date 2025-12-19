@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, jsonify, request, redirect, url_for, send_from_directory, make_response
 import json
 import random
 import os
+import uuid
 
 BASE_DIR = os.path.dirname(__file__)
 CARDS_FILE = os.path.join(BASE_DIR, 'cards.json')
@@ -10,25 +11,73 @@ USER_FILE = os.path.join(BASE_DIR, 'user_data.json')
 app = Flask(__name__)
 
 # ======================================================
-# USER DATA (HYBRID: IN-MEMORY + FILE)
+# USER DATA (per-user using cookies + per-user files)
 # ======================================================
-# On Vercel (read-only FS), the in-memory cache persists within the same execution context.
-# Try to load from file on startup; persist to file if possible; use memory as backup.
-USER_CACHE = None
+# We persist per-user state to per-user files when possible and also keep an in-memory
+# cache per UID so the same user stays consistent during the life of the execution context.
+USERS_DIR = os.path.join(BASE_DIR, 'user_data')
+USER_MAP = {}  # in-memory mapping uid -> user dict
 
-def init_user_cache():
-    """Load user data from file (if it exists) into memory on startup."""
-    global USER_CACHE
-    default_user = {"coins": 100000, "owned": [], "tickets": 0}
+
+def ensure_users_dir():
     try:
-        if os.path.exists(USER_FILE):
-            with open(USER_FILE, 'r', encoding='utf-8') as f:
-                USER_CACHE = json.load(f)
-                app.logger.info('Loaded user data from file')
-                return
+        os.makedirs(USERS_DIR, exist_ok=True)
     except Exception as e:
-        app.logger.warning('Could not load user_data.json: %s', e)
-    USER_CACHE = default_user.copy()
+        app.logger.debug('Could not create users dir: %s', e)
+
+
+def user_file(uid):
+    return os.path.join(USERS_DIR, f"{uid}.json")
+
+
+def load_user_for(uid):
+    if uid in USER_MAP:
+        return USER_MAP[uid]
+    path = user_file(uid)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            user = json.load(f)
+            USER_MAP[uid] = user
+            return user
+    except Exception:
+        # if file doesn't exist or can't be read, start with defaults in memory
+        user = {"coins": 100000, "owned": [], "tickets": 0}
+        USER_MAP[uid] = user
+        return user
+
+
+def save_user_for(uid, user):
+    USER_MAP[uid] = user
+    try:
+        ensure_users_dir()
+        with open(user_file(uid), 'w', encoding='utf-8') as f:
+            json.dump(user, f, indent=2)
+        app.logger.info('Saved user %s to disk', uid)
+    except Exception as e:
+        app.logger.warning('Could not save user %s: %s; using in-memory cache', uid, e)
+
+
+def create_new_user():
+    uid = uuid.uuid4().hex
+    user = {"coins": 100000, "owned": [], "tickets": 0}
+    USER_MAP[uid] = user
+    try:
+        ensure_users_dir()
+        with open(user_file(uid), 'w', encoding='utf-8') as f:
+            json.dump(user, f, indent=2)
+    except Exception:
+        # best-effort only
+        pass
+    return uid, user
+
+
+def get_or_create_user():
+    """Return (uid, user, set_cookie_flag)"""
+    uid = request.cookies.get('uid')
+    if uid:
+        return uid, load_user_for(uid), False
+    uid, user = create_new_user()
+    return uid, user, True
 
 # ======================================================
 # CONSTANTS
@@ -100,23 +149,8 @@ def load_cards():
 # ======================================================
 # USER (FILE BASED)
 # ======================================================
-def load_user():
-    """Return the in-memory user cache (which was initialized from file on startup)."""
-    global USER_CACHE
-    if USER_CACHE is None:
-        init_user_cache()
-    return USER_CACHE
-
-def save_user(user):
-    """Update in-memory cache and try to persist to file (best-effort on read-only FS)."""
-    global USER_CACHE
-    USER_CACHE = user
-    try:
-        with open(USER_FILE, 'w', encoding='utf-8') as f:
-            json.dump(user, f, indent=2)
-        app.logger.info('Saved user data to file')
-    except Exception as e:
-        app.logger.warning('Could not save user_data.json (likely read-only FS): %s; using in-memory cache', e)
+# NOTE: per-user helpers above provide load/save operations.
+# The older single-user helpers were removed in favor of per-user implementations.
 
 # ======================================================
 # GACHA LOGIC
@@ -147,21 +181,27 @@ def pick_cards_by_rarity(cards, rarity, count=1):
 # ======================================================
 @app.route('/')
 def lobby():
-    user = load_user()
-    return render_template(
+    uid, user, set_cookie = get_or_create_user()
+    resp = make_response(render_template(
         'lobby.html',
         coins=user.get('coins', 0),
         tickets=user.get('tickets', 0)
-    )
+    ))
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/gacha')
 def gacha():
-    user = load_user()
-    return render_template(
+    uid, user, set_cookie = get_or_create_user()
+    resp = make_response(render_template(
         'gacha.html',
         coins=user.get('coins', 0),
         tickets=user.get('tickets', 0)
-    )
+    ))
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/pull', methods=['POST'])
 def pull():
@@ -170,9 +210,12 @@ def pull():
     cost_per = 100
     total_cost = cost_per * count
 
-    user = load_user()
+    uid, user, set_cookie = get_or_create_user()
     if user['coins'] < total_cost:
-        return jsonify({'ok': False, 'error': 'Not enough coins'}), 400
+        resp = jsonify({'ok': False, 'error': 'Not enough coins'})
+        if set_cookie:
+            resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+        return resp, 400
 
     cards = load_cards()
     rarities = choose_rarity(count)
@@ -195,19 +238,22 @@ def pull():
         results.append(result)
 
     user['coins'] -= total_cost
-    save_user(user)
+    save_user_for(uid, user)
 
-    return jsonify({
+    resp = jsonify({
         'ok': True,
         'results': results,
         'coins': user['coins'],
         'tickets': user['tickets']
     })
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/deck')
 def deck():
+    uid, user, set_cookie = get_or_create_user()
     cards = load_cards()
-    user = load_user()
     owned = set(user['owned'])
 
     rarity_order = ['UR', 'SSS', 'SS', 'S', 'A', 'B', 'C', 'D']
@@ -218,23 +264,29 @@ def deck():
         if group:
             grouped.append((r, group))
 
-    return render_template(
+    resp = make_response(render_template(
         'deck.html',
         grouped_cards=grouped,
         owned=owned,
         coins=user['coins'],
         tickets=user['tickets']
-    )
+    ))
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/shop')
 def shop():
-    user = load_user()
-    return render_template(
+    uid, user, set_cookie = get_or_create_user()
+    resp = make_response(render_template(
         'shop.html',
         coins=user['coins'],
         tickets=user['tickets'],
         boxes=BOXES
-    )
+    ))
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/buy', methods=['POST'])
 def buy():
@@ -244,11 +296,14 @@ def buy():
     if rarity not in BOXES:
         return jsonify({'ok': False, 'error': 'Invalid rarity'}), 400
 
-    user = load_user()
+    uid, user, set_cookie = get_or_create_user()
     cost = BOXES[rarity]['cost']
 
     if user['tickets'] < cost:
-        return jsonify({'ok': False, 'error': 'Not enough tickets'}), 400
+        resp = jsonify({'ok': False, 'error': 'Not enough tickets'})
+        if set_cookie:
+            resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+        return resp, 400
 
     cards = load_cards()
     pool = [
@@ -262,13 +317,16 @@ def buy():
     card = random.choice(pool)
     user['tickets'] -= cost
     user['owned'].append(card['id'])
-    save_user(user)
+    save_user_for(uid, user)
 
-    return jsonify({
+    resp = jsonify({
         'ok': True,
         'card': card,
         'tickets': user['tickets']
     })
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 @app.route('/reset', methods=['POST'])
 def reset():
@@ -278,17 +336,23 @@ def reset():
     if data.get('confirm') is not True:
         return jsonify({'ok': False, 'error': 'Missing confirmation'}), 400
 
+    uid, user, set_cookie = get_or_create_user()
+
     user = {
         "coins": 100000,
         "owned": [],
         "tickets": 0
     }
     try:
-        save_user(user)
+        save_user_for(uid, user)
     except Exception as e:
         app.logger.exception("Failed to reset user data")
         return jsonify({'ok': False, 'error': 'Failed to save user data', 'detail': str(e)}), 500
-    return jsonify({'ok': True})
+
+    resp = jsonify({'ok': True})
+    if set_cookie:
+        resp.set_cookie('uid', uid, max_age=60*60*24*365*5, httponly=True)
+    return resp
 
 # ======================================================
 # STATIC & DEBUG
@@ -300,15 +364,29 @@ def public_asset(filename):
 
 @app.route('/_debug/fs')
 def debug_fs():
-    return jsonify({
-        "ok": True,
-        "base_dir": BASE_DIR,
-        "cards_json_exists": os.path.exists(CARDS_FILE),
-        "user_cache": USER_CACHE
-    })
-
-# Initialize user cache on app startup
-init_user_cache()
+    try:
+        files = []
+        if os.path.isdir(USERS_DIR):
+            files = os.listdir(USERS_DIR)
+        sample = None
+        if files:
+            sample_path = os.path.join(USERS_DIR, files[0])
+            try:
+                with open(sample_path, 'r', encoding='utf-8') as f:
+                    sample = json.load(f)
+            except Exception:
+                sample = 'could not read sample file'
+        return jsonify({
+            "ok": True,
+            "base_dir": BASE_DIR,
+            "cards_json_exists": os.path.exists(CARDS_FILE),
+            "users_dir_exists": os.path.isdir(USERS_DIR),
+            "users_files": files,
+            "sample_user": sample
+        })
+    except Exception:
+        app.logger.exception('Debug FS failed')
+        return jsonify({'ok': False, 'error': 'debug failed'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
