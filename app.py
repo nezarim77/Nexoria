@@ -155,8 +155,13 @@ def choose_rarity(pulls=1):
     weights = [w for _, w in probs]
     return random.choices(labels, weights=weights, k=pulls)
 
-def pick_cards_by_rarity(cards, rarity):
+def pick_cards_by_rarity(cards, rarity, owned_set=None, prefer_unowned=False):
     pool = [c for c in cards if c['rarity'] == rarity]
+    # if this is a guaranteed pity slot, prefer giving an unowned card of that rarity
+    if prefer_unowned and owned_set is not None:
+        unowned = [c for c in pool if c['id'] not in owned_set]
+        if unowned:
+            return random.choice(unowned)
     return random.choice(pool if pool else cards)
 
 # ======================================================
@@ -228,7 +233,7 @@ def pull():
     cards = load_cards()
 
     # Determine guaranteed rarities based on pity
-    guarantee_sss = user.get('pity_sss', 0) >= 100
+    guarantee_sss = user.get('pity_sss', 0) >= 200
     guarantee_ur = user.get('pity_ur', 0) >= 500
 
     guarantees = []
@@ -239,6 +244,9 @@ def pull():
 
     # Helper: generate a base list of rarities
     rarities = choose_rarity(count)
+
+    # track which slots were imposed by guarantees so we can prefer unowned cards
+    guaranteed_flags = [False] * len(rarities)
 
     # If we have guarantees, ensure each guaranteed rarity appears at least once
     # If we can't fit all guarantees because count is small, prioritize UR over SSS
@@ -257,20 +265,24 @@ def pull():
                     try:
                         idx = rarities.index(lp)
                         rarities[idx] = g
+                        guaranteed_flags[idx] = True
                         replaced = True
                         break
                     except ValueError:
                         continue
                 if not replaced:
                     # fallback: replace random slot
-                    rarities[random.randrange(0, len(rarities))] = g
+                    idx = random.randrange(0, len(rarities))
+                    rarities[idx] = g
+                    guaranteed_flags[idx] = True
 
     results = []
     obtained_sss = False
     obtained_ur = False
 
-    for r in rarities:
-        card = pick_cards_by_rarity(cards, r)
+    for i, r in enumerate(rarities):
+        prefer_unowned = guaranteed_flags[i]
+        card = pick_cards_by_rarity(cards, r, owned_set=set(user['owned']), prefer_unowned=prefer_unowned)
         result = dict(card)
 
         if card['id'] in user['owned']:

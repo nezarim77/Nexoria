@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const bar = document.getElementById('pitySssBar')
     if(bar) bar.style.width = Math.min(100, (n/200)*100) + '%'
     const msg = document.getElementById('pitySssMsg')
-    if(msg) msg.textContent = n >= 100 ? '✅ Guaranteed on next pull!' : ''
+    if(msg) msg.textContent = n >= 200 ? '✅ Guaranteed on next pull!' : ''
   }
 
   function updatePityUr(n){
