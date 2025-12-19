@@ -330,7 +330,7 @@ button{background:var(--accent);color:#321604;border:none;padding:8px 12px;borde
 .lobby-hero{width:100%;display:flex;justify-content:center}
 .lobby-image{
   max-width:260px;   /* ← dari 350 */
-  width:70%;         /* ← dari 80% */
+  width:80%;         /* ← dari 80% */
   height:auto;
   border-radius:18px;
   box-shadow:0 10px 32px rgba(0,0,0,0.45);
