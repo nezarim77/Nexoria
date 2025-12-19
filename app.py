@@ -29,6 +29,7 @@ DEFAULT_USER = {
     "owned": [],
     "tickets": 0,
     "pity_sss": 0,
+    "pity_ss": 0,
     "pity_ur": 0
 }
 
@@ -45,6 +46,7 @@ def get_user():
             user = serializer.loads(data)
             # backfill missing keys for older users
             user.setdefault('pity_sss', 0)
+            user.setdefault('pity_ss', 0)
             user.setdefault('pity_ur', 0)
             return uid, user
         except Exception:
@@ -186,6 +188,7 @@ def gacha():
         coins=user['coins'],
         tickets=user['tickets'],
         pity_sss=user.get('pity_sss', 0),
+        pity_ss=user.get('pity_ss', 0),
         pity_ur=user.get('pity_ur', 0)
     ))
     return save_user_response(resp, uid, user)
@@ -234,13 +237,17 @@ def pull():
 
     # Determine guaranteed rarities based on pity
     guarantee_sss = user.get('pity_sss', 0) >= 200
+    guarantee_ss = user.get('pity_ss', 0) >= 100
     guarantee_ur = user.get('pity_ur', 0) >= 500
 
     guarantees = []
+    # priority: UR > SSS > SS
     if guarantee_ur:
         guarantees.append('UR')
     if guarantee_sss:
         guarantees.append('SSS')
+    if guarantee_ss:
+        guarantees.append('SS')
 
     # Helper: generate a base list of rarities
     rarities = choose_rarity(count)
@@ -249,10 +256,9 @@ def pull():
     guaranteed_flags = [False] * len(rarities)
 
     # If we have guarantees, ensure each guaranteed rarity appears at least once
-    # If we can't fit all guarantees because count is small, prioritize UR over SSS
+    # If we can't fit all guarantees because count is small, use the priority order above
     needed = list(guarantees)
     if needed:
-        # If both needed and count == 1, prefer UR
         if len(needed) > count:
             needed = needed[:count]
         for g in needed:
@@ -278,6 +284,7 @@ def pull():
 
     results = []
     obtained_sss = False
+    obtained_ss = False
     obtained_ur = False
 
     for i, r in enumerate(rarities):
@@ -300,6 +307,8 @@ def pull():
         # track obtained rarities to reset pity
         if card['rarity'] == 'SSS':
             obtained_sss = True
+        if card['rarity'] == 'SS':
+            obtained_ss = True
         if card['rarity'] == 'UR':
             obtained_ur = True
 
@@ -312,6 +321,11 @@ def pull():
     else:
         user['pity_sss'] = min(200, user.get('pity_sss', 0) + count)
 
+    if obtained_ss:
+        user['pity_ss'] = 0
+    else:
+        user['pity_ss'] = min(100, user.get('pity_ss', 0) + count)
+
     if obtained_ur:
         user['pity_ur'] = 0
     else:
@@ -323,6 +337,7 @@ def pull():
         'coins': user['coins'],
         'tickets': user['tickets'],
         'pity_sss': user.get('pity_sss', 0),
+        'pity_ss': user.get('pity_ss', 0),
         'pity_ur': user.get('pity_ur', 0)
     })
     return save_user_response(resp, uid, user)

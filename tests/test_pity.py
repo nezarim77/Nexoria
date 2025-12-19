@@ -21,7 +21,7 @@ def make_user_cookie(client, data):
 if __name__ == '__main__':
     with app.test_client() as client:
         print('== test: guarantee SSS when pity_sss>=200')
-        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":200, "pity_ur":0}
+        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":200, "pity_ur":0, "pity_ss":0}
         make_user_cookie(client, user)
 
         r = client.post('/pull', json={'count': 1})
@@ -32,6 +32,18 @@ if __name__ == '__main__':
         # SSS from pity should be an unowned card (not a duplicate)
         assert any(c['rarity'] == 'SSS' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned SSS from pity'
         assert j['pity_sss'] == 0
+
+        print('== test: guarantee SS when pity_ss>=100')
+        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":0, "pity_ur":0, "pity_ss":100}
+        make_user_cookie(client, user)
+
+        r = client.post('/pull', json={'count': 1})
+        j = r.get_json()
+        print('response:', json.dumps(j, indent=2))
+        assert r.status_code == 200
+        assert j['ok']
+        assert any(c['rarity'] == 'SS' and not c.get('duplicate', False) for c in j['results']), 'Expected unowned SS from pity'
+        assert j['pity_ss'] == 0
 
         print('== test: guarantee UR when pity_ur>=500')
         user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":0, "pity_ur":500}
@@ -46,8 +58,21 @@ if __name__ == '__main__':
         assert any(c['rarity'] == 'UR' and not c.get('duplicate', False) for c in j['results']), 'Expected unowned UR from pity'
         assert j['pity_ur'] == 0
 
-        print('== test: both guarantees present in 10-pull')
-        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":200, "pity_ur":500}
+        print('== test: guarantee UR when pity_ur>=500')
+        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":0, "pity_ur":500}
+        make_user_cookie(client, user)
+
+        r = client.post('/pull', json={'count': 1})
+        j = r.get_json()
+        print('response:', json.dumps(j, indent=2))
+        assert r.status_code == 200
+        assert j['ok']
+        # UR from pity should be an unowned card (not a duplicate)
+        assert any(c['rarity'] == 'UR' and not c.get('duplicate', False) for c in j['results']), 'Expected unowned UR from pity'
+        assert j['pity_ur'] == 0
+
+        print('== test: both guarantees present in 10-pull (SSS + UR)')
+        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":200, "pity_ur":500, "pity_ss":0}
         make_user_cookie(client, user)
 
         r = client.post('/pull', json={'count': 10})
@@ -58,6 +83,20 @@ if __name__ == '__main__':
         assert any(c['rarity'] == 'SSS' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned SSS from combined pity'
         assert any(c['rarity'] == 'UR' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned UR from combined pity'
         assert j['pity_sss'] == 0 and j['pity_ur'] == 0
+
+        print('== test: all three guarantees present in 10-pull (SSS + SS + UR)')
+        user = {"coins":100000, "owned":[], "tickets":0, "pity_sss":200, "pity_ur":500, "pity_ss":100}
+        make_user_cookie(client, user)
+
+        r = client.post('/pull', json={'count': 10})
+        j = r.get_json()
+        print('response:', json.dumps(j, indent=2))
+        assert r.status_code == 200
+        assert j['ok']
+        assert any(c['rarity'] == 'SSS' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned SSS from combined pity'
+        assert any(c['rarity'] == 'SS' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned SS from combined pity'
+        assert any(c['rarity'] == 'UR' and not c.get('duplicate', False) for c in j['results']), 'Expected at least one unowned UR from combined pity'
+        assert j['pity_sss'] == 0 and j['pity_ss'] == 0 and j['pity_ur'] == 0
 
         print('== test: increment pity when no SSS/UR obtained (deterministic)')
         # patch choose_rarity to always return low rarities so we won't accidentally hit SSS/UR
@@ -73,6 +112,7 @@ if __name__ == '__main__':
         assert r.status_code == 200
         assert j['ok']
         assert j['pity_sss'] == 3
+        assert j['pity_ss'] == 3
         assert j['pity_ur'] == 3
 
         # restore

@@ -61,11 +61,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(msg) msg.textContent = n >= 500 ? '✅ Guaranteed on next pull!' : ''
   }
 
+  function updatePitySs(n){
+    const el = document.getElementById('pitySs')
+    if(el) el.textContent = n
+    const bar = document.getElementById('pitySsBar')
+    if(bar) bar.style.width = Math.min(100, (n/100)*100) + '%'
+    const msg = document.getElementById('pitySsMsg')
+    if(msg) msg.textContent = n >= 100 ? '✅ Guaranteed on next pull!' : ''
+  }
+
   // initialize pity UI from server-rendered values
   (function initPityUI(){
     const sssEl = document.getElementById('pitySss')
+    const ssEl = document.getElementById('pitySs')
     const urEl = document.getElementById('pityUr')
     if(sssEl){ updatePitySss(parseInt(sssEl.textContent || '0', 10)) }
+    if(ssEl){ updatePitySs(parseInt(ssEl.textContent || '0', 10)) }
     if(urEl){ updatePityUr(parseInt(urEl.textContent || '0', 10)) }
   })()
 
@@ -202,6 +213,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // update pity UI if provided
     if(typeof j.pity_sss !== 'undefined') updatePitySss(j.pity_sss)
+    if(typeof j.pity_ss !== 'undefined') updatePitySs(j.pity_ss)
     if(typeof j.pity_ur !== 'undefined') updatePityUr(j.pity_ur)
 
     resultArea.innerHTML = ''
