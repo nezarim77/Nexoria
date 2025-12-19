@@ -326,6 +326,11 @@ body{margin:0;background:linear-gradient(180deg,#441111, #882222);color:#e6eef6}
 button{background:var(--accent);color:#321604;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
 
 /* Lobby hero */
+@keyframes floatHero{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
 .lobby{display:flex;flex-direction:column;align-items:center;gap:24px}
 .lobby-hero{width:100%;display:flex;justify-content:center}
 .lobby-image{
@@ -334,7 +339,8 @@ button{background:var(--accent);color:#321604;border:none;padding:8px 12px;borde
   height:auto;
   border-radius:18px;
   box-shadow:0 10px 32px rgba(0,0,0,0.45);
-  border:5px solid rgba(255,255,255,0.03);
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.6));
+  animation: floatHero 6s ease-in-out infinite;
 }
 
 .lobby-menu{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
