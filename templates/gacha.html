@@ -12,12 +12,12 @@
 
     <div class="pity-info center">
       <div class="pity-item">
-        <div><strong>SSS Pity:</strong> <span id="pitySss">{{ pity_sss|default(0) }}</span> / 200 <span id="pitySssMsg"></span></div>
-        <div class="pity-bar"><div id="pitySssBar" class="pity-progress" style="width: {{ ((pity_sss|default(0)|int / 200.0) * 100)|round(2) }}%;"></div></div>
-      </div>
-      <div class="pity-item">
         <div><strong>SS Pity:</strong> <span id="pitySs">{{ pity_ss|default(0) }}</span> / 100 <span id="pitySsMsg"></span></div>
         <div class="pity-bar"><div id="pitySsBar" class="pity-progress" style="width: {{ ((pity_ss|default(0)|int / 100.0) * 100)|round(2) }}%;"></div></div>
+      </div>
+      <div class="pity-item">
+        <div><strong>SSS Pity:</strong> <span id="pitySss">{{ pity_sss|default(0) }}</span> / 200 <span id="pitySssMsg"></span></div>
+        <div class="pity-bar"><div id="pitySssBar" class="pity-progress" style="width: {{ ((pity_sss|default(0)|int / 200.0) * 100)|round(2) }}%;"></div></div>
       </div>
       <div class="pity-item">
         <div><strong>UR Pity:</strong> <span id="pityUr">{{ pity_ur|default(0) }}</span> / 500 <span id="pityUrMsg"></span></div>
