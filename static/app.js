@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const resetBtn = document.getElementById('resetBtn')
   const resetLobby = document.getElementById('resetLobby')
 
+  function playSfx(id){
+    const el = document.getElementById(id)
+    if(!el) return
+    el.currentTime = 0
+    el.play().catch(()=>{})
+  }
+
     /* =========================
      BOX IMAGE BY RARITY
   ========================= */
@@ -111,7 +118,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
   /* =========================
      GACHA PULL (ASLI + UTUH)
   ========================= */
-  if(pull10) pull10.addEventListener('click', ()=>doPull(10))
+  if(pull10) pull10.addEventListener('click', ()=>{
+  playSfx('sfx-pull')
+  doPull(10)
+})
+
 
   async function doPull(count){
     if(pull10) pull10.disabled = true
@@ -132,10 +143,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     if(!j.ok){
       if(j.error && j.error.toLowerCase().includes('not enough coin')){
+        playSfx('sfx-error')
+
   resultArea.innerHTML = `
     <div class="no-coins-overlay">
       <div class="no-coins">
-        <img src="/static/public/assets/aqua-cry.png" alt="Koin habis">
+        <img src="https://images4.alphacoders.com/811/thumb-1920-811625.png" alt="Koin habis">
         <div class="no-coins-text">Yah, koinmu habis</div>
       </div>
     </div>
@@ -165,6 +178,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if(count === 1) resultArea.classList.add('single')
 
     j.results.forEach((card, i)=>{
+      if(['S','SS','SSS','UR'].includes(card.rarity)){
+  playSfx('sfx-rare')
+}
+
       const wrapper = document.createElement('div')
       wrapper.className = 'card flip-card rarity-'+card.rarity.toLowerCase()
 
